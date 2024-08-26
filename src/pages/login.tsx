@@ -151,12 +151,12 @@ const Login: FC = () => {
                     <div className="text-center mt-4">
                         <p className="text-sm text-muted-foreground">
                             Don&apos;t have an account?{" "}
-                            <a
-                                href="/register"
+                            <Link
+                                to="/register"
                                 className="font-medium text-primary hover:text-primary/80"
                             >
                                 Sign Up
-                            </a>
+                            </Link>
                         </p>
                     </div>
                 </div>

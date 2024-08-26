@@ -1,6 +1,6 @@
 import logoDark from "@/assets/image/logo/logo-dark.png";
 import logo from "@/assets/image/logo/logo.svg";
-import { LucideFacebook, LucideGithub, LucideTwitter } from "lucide-react";
+import { LucideFacebook, LucideInstagram, LucideTwitter } from "lucide-react";
 import { FC } from "react";
 import { Link } from "react-router-dom";
 import { useTheme } from "./theme-provider";
@@ -86,7 +86,7 @@ const Footer: FC = () => {
                             className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
                             aria-label="Github"
                         >
-                            <LucideGithub size={20}/>
+                            <LucideInstagram size={20}/>
                         </Link>
                     </div>
                 </div>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -112,7 +114,7 @@
 
   .nav-link:hover::after,
   .nav-link.active::after {
-      @apply w-[80%];
+      @apply w-8 sm:w-[70%];
   }
 
   .navigation-wrapper {

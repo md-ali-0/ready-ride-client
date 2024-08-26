@@ -2,12 +2,16 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FC } from "react";
-
+import { IUser } from "@/interface/IUser";
+import { useLoginUserMutation } from "@/redux/features/auth/authApi";
+import { setUser } from "@/redux/features/auth/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import verifyToken from "@/utils/verify-token";
 import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 interface FormValues {
     email: string;
@@ -21,29 +25,27 @@ const Login: FC = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<FormValues>();
-    // const [loginUser, { isSuccess }] = useLoginUserMutation();
-    // const navigate = useNavigate();
-    // const dispatch = useAppDispatch();
+    const [loginUser, { isSuccess }] = useLoginUserMutation();
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const [showPassword, setShowPassword] = useState(false);
 
-    // useEffect(() => {
-    //     if (isSuccess) {
-    //         toast.success("User Logged In Successfully");
-    //         navigate('/')
-    //     }
-    // }, [isSuccess, navigate]);
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success("User Logged In Successfully");
+            navigate("/");
+        }
+    }, [isSuccess, navigate]);
 
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
-        // try {
-        //     const res = await loginUser(data).unwrap();
-        //     const user = verifyToken(res.data.accessToken) as IUser;
-        //     dispatch(setUser({ user: user, token: res.data.accessToken }));
-        // } catch (error) {
-        //     console.log(error);
-        //     toast.error("Something went wrong");
-        // }
-        console.log(data);
+        try {
+            const res = await loginUser(data).unwrap();
+            const user = verifyToken(res.data.accessToken) as IUser;
+            dispatch(setUser({ user: user, token: res.data.accessToken }));
+        } catch (error) {
+            toast.error(error?.data?.message || "Something went wrong");
+        }
     };
 
     const togglePasswordVisibility = () => {

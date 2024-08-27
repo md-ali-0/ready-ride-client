@@ -117,7 +117,7 @@ const Navbar: FC = () => {
                 <div className="flex items-center max-lg:ml-auto space-x-3">
                     <ModeToggle />
                     {token ? (
-                        <div className="relative">
+                        <div className="border rounded-md relative p-1.5">
                             <button
                                 onClick={handleDropdownToggle}
                                 className="flex items-center space-x-2"

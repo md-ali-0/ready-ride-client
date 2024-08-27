@@ -117,14 +117,6 @@
       @apply w-8 sm:w-[70%];
   }
 
-  .navigation-wrapper {
-      @apply relative;
-  }
-
-  .slider {
-      @apply flex items-center justify-between font-medium;
-  }
-
   .custom-scroll {
       @apply overflow-x-hidden scroll-smooth;
   }

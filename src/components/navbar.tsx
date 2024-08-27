@@ -136,7 +136,7 @@ const Navbar: FC = () => {
                         </div>
                     ) : (
                         <>
-                            <Button asChild>
+                            <Button asChild variant={'gradient'}>
                                 <Link to={"/login"} className="hidden md:flex">
                                     Login
                                 </Link>

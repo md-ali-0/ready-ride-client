@@ -31,11 +31,13 @@ const Testimonial: FC = () => {
             image: "https://pagedone.io/asset/uploads/1696229969.png",
             review: "Pagedone has made it possible for me to stay on top of my portfolio and make informed decisions quickly and easily.",
             name: "Harsh P.",
+            ocupation: "CEO",
         },
         {
             rating: 4.5,
             image: "https://pagedone.io/asset/uploads/1696229969.png",
             review: "Pagedone has made it possible for me to stay on top of my portfolio and make informed decisions quickly and easily.",
+            name: "Harsh P.",
             ocupation: "CEO",
         },
     ];
@@ -83,7 +85,7 @@ const Testimonial: FC = () => {
                 >
                     {reviews.map((item, idx) => (
                         <SwiperSlide key={idx}>
-                            <div className="group bg-white border border-solid border-gray-300 rounded-xl p-6 transition-all duration-500  w-full mx-auto slide_active:border-primary hover:border-primary hover:shadow-sm">
+                            <div className="group bg-background border rounded-xl p-6 transition-all duration-500  w-full mx-auto slide_active:border-primary hover:border-primary hover:shadow-sm">
                                 <div className="">
                                     <div className="flex items-center mb-7 gap-2 text-amber-500 transition-all duration-500  ">
                                         <Star className="size-5" />
@@ -92,21 +94,21 @@ const Testimonial: FC = () => {
                                             {item.rating}
                                         </span>
                                     </div>
-                                    <p className="text-base text-gray-600 leading-6  transition-all duration-500 pb-8 group-hover:text-gray-800 slide_active:text-gray-800">
+                                    <p className="text-base text-gray-600 dark:text-gray-300 leading-6  transition-all duration-500 pb-8 group-hover:text-gray-800 slide_active:text-gray-800">
                                         {item.review}
                                     </p>
                                 </div>
-                                <div className="flex items-center gap-5 border-t border-solid border-gray-200 pt-5">
+                                <div className="flex items-center gap-5 border-t pt-5">
                                     <img
                                         className="rounded-full h-10 w-10"
                                         src="https://pagedone.io/asset/uploads/1696229969.png"
                                         alt="avatar"
                                     />
                                     <div className="block">
-                                        <h5 className="text-gray-900 font-medium transition-all duration-500  mb-1">
+                                        <h5 className="text-gray-900 dark:text-gray-200 font-medium transition-all duration-500  mb-1">
                                             {item.name}
                                         </h5>
-                                        <span className="text-sm leading-4 text-gray-500">
+                                        <span className="text-sm leading-4 text-gray-500 dark:text-gray-300">
                                             {item.ocupation}
                                         </span>
                                     </div>

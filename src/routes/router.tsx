@@ -3,12 +3,14 @@ import AboutUs from "@/pages/about-us";
 import ContactUs from "@/pages/contact-us";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
+import NotFound from "@/pages/not-found";
 import Register from "@/pages/register";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([{
     path: '/',
     element: <MainLayout/>,
+    errorElement: <NotFound/>,
     children: [
         {
             path: '/',

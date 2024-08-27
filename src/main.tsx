@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { RouterProvider } from "react-router-dom";
 import { PersistGate } from "redux-persist/integration/react";
-
 import { ThemeProvider } from "./components/theme-provider.tsx";
 import { Toaster } from "./components/ui/sonner.tsx";
 import "./index.css";
@@ -16,7 +15,7 @@ createRoot(document.getElementById("root")!).render(
             <PersistGate loading={null} persistor={persistor}>
                 <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
                     <RouterProvider router={router} />
-                    <Toaster/>
+                    <Toaster richColors={true}/>
                 </ThemeProvider>
             </PersistGate>
         </Provider>

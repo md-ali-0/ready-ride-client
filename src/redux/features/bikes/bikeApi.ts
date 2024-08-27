@@ -5,11 +5,12 @@ import { baseApi } from "../../api/baseApi";
 const userApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getAllBikes: builder.query({
-            query: (query) => {
+            query: (args) => {
                 const params = new URLSearchParams();
-
-                if (query) {
-                    query.forEach((item: TQueryParam) => {
+                if (args) {
+                    console.log(args);
+                    
+                    args.forEach((item: TQueryParam) => {
                         params.append(item.name, item.value as string);
                     });
                 }
@@ -18,7 +19,7 @@ const userApi = baseApi.injectEndpoints({
                     params: params,
                 };
             },
-            transformResponse: (response: TResponseRedux<IBike>) => {
+            transformResponse: (response: TResponseRedux<IBike[]>) => {
                 return {
                     data: response.data,
                     meta: response.meta,

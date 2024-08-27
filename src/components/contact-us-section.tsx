@@ -1,14 +1,15 @@
 import {
-  Facebook,
-  Instagram,
-  Mail,
-  MapPin,
-  Phone,
-  Twitter,
+    Facebook,
+    Instagram,
+    Mail,
+    MapPin,
+    Phone,
+    Twitter,
 } from "lucide-react";
 import { FC } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
 
 const ContactUsSection: FC = () => {
     return (
@@ -16,33 +17,39 @@ const ContactUsSection: FC = () => {
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col items-center gap-2 mb-8 md:mb-12">
                     <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
-                        Why Choose Us
+                        Contact Us
                     </h2>
                     <p className="text-muted-foreground">
                         Check out our latest and greatest Bikes.
                     </p>
                 </div>
-                <div className="flex flex-col lg:flex-row justify-between items-start p-8 gap-5">
+                <div className="flex flex-col lg:flex-row justify-between items-start gap-10">
                     {/* Find Us Section */}
-                    <div className="w-full lg:w-1/2 bg-white shadow-lg p-8 rounded-lg">
+                    <div className="w-full lg:w-1/2 bg-background border p-8 rounded-lg">
                         <h2 className="text-xl font-bold mb-6">Find us here</h2>
                         <div className="space-y-4">
                             <div className="flex items-start space-x-4">
-                                <MapPin className="text-xl text-gray-500" />
+                                <Button variant={'outline'} size={'icon'}>
+                                    <MapPin className="text-xl text-gray-500 dark:text-gray-300" />
+                                </Button>
                                 <div>
                                     <h3 className="font-semibold">Address</h3>
                                     <p>NY, United States</p>
                                 </div>
                             </div>
                             <div className="flex items-start space-x-4">
-                                <Mail className="text-xl text-gray-500" />
+                                <Button variant={'outline'} size={'icon'}>
+                                    <Mail className="text-xl text-gray-500 dark:text-gray-300" />
+                                </Button>
                                 <div>
                                     <h3 className="font-semibold">Email</h3>
-                                    <p>demo@demo.com</p>
+                                    <p>contact@readyride.com</p>
                                 </div>
                             </div>
                             <div className="flex items-start space-x-4">
-                                <Phone className="text-xl text-gray-500" />
+                                <Button variant={'outline'} size={'icon'}>
+                                    <Phone className="text-xl text-gray-500 dark:text-gray-300" />
+                                </Button>
                                 <div>
                                     <h3 className="font-semibold">Phone</h3>
                                     <p>+129290122122</p>
@@ -58,7 +65,6 @@ const ContactUsSection: FC = () => {
 
                     {/* Get in Touch Section */}
                     <div className="w-full lg:w-1/2">
-                        <h2 className="text-xl font-bold mb-6">Get in touch</h2>
                         <form className="space-y-4">
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 <div>
@@ -66,7 +72,7 @@ const ContactUsSection: FC = () => {
                                         className="block font-semibold mb-2"
                                         htmlFor="name"
                                     >
-                                        Your Name (required)
+                                        Your Name <span className="text-red-600">*</span>
                                     </label>
                                     <Input
                                         id="name"
@@ -80,7 +86,7 @@ const ContactUsSection: FC = () => {
                                         className="block font-semibold mb-2"
                                         htmlFor="email"
                                     >
-                                        Your Email (required)
+                                        Your Email <span className="text-red-600">*</span>
                                     </label>
                                     <Input
                                         id="email"
@@ -95,7 +101,7 @@ const ContactUsSection: FC = () => {
                                     className="block font-semibold mb-2"
                                     htmlFor="subject"
                                 >
-                                    Subject*
+                                    Subject <span className="text-red-600">*</span>
                                 </label>
                                 <Input
                                     id="subject"
@@ -109,16 +115,16 @@ const ContactUsSection: FC = () => {
                                     className="block font-semibold mb-2"
                                     htmlFor="message"
                                 >
-                                    Message *
+                                    Message <span className="text-red-600">*</span>
                                 </label>
-                                <textarea
+                                <Textarea
                                     id="message"
                                     placeholder="Write your message here"
-                                    className="w-full p-3 h-32 border border-gray-300 rounded"
                                     required
-                                ></textarea>
+                                    rows={3}
+                                ></Textarea>
                             </div>
-                            <Button type="submit">Send Message</Button>
+                            <Button type="submit" size={'lg'} className="rounded-full w-full sm:w-1/2">Send Message</Button>
                         </form>
                     </div>
                 </div>

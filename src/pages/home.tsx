@@ -1,4 +1,5 @@
 import ContactUsSection from '@/components/contact-us-section';
+import CouponSection from '@/components/coupon-section';
 import FeaturedSection from '@/components/featured-section';
 import HeroBanner from '@/components/hero-banner';
 import Testimonial from '@/components/testimonial';
@@ -13,6 +14,7 @@ const Home: FC = () => {
       <FeaturedSection/>
       <Testimonial/>
       <WhyChooseUs/>
+      <CouponSection/>
       <ContactUsSection/>
     </>
   );

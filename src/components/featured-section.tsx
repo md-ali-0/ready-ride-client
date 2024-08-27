@@ -7,7 +7,7 @@ const FeaturedSection: FC = () => {
     const { data : allBikes} = useGetAllBikesQuery(undefined)
 
     return (
-        <section className="py-12 md:py-16">
+        <section className="py-12">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col items-center gap-2 mb-8 md:mb-12">
                     <h2 className="text-2xl font-bold tracking-tight md:text-3xl">

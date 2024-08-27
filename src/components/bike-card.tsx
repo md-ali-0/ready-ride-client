@@ -9,7 +9,7 @@ interface BikeCardProps {
 
 const BikeCard: FC<BikeCardProps> = ({ bike }) => {
     return (
-        <div className="border rounded-xl px-2.5 py-3">
+        <div className="border hover:border-primary transition-all transform duration-500 ease-in-out rounded-xl px-2.5 py-3">
             <img
                 src={
                     "https://autobike-light.templaza.net/wp-content/uploads/2023/05/kody-goodson-SPBN8LHjaIE-unsplash.jpg"

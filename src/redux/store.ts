@@ -3,14 +3,14 @@ import { baseApi } from "./api/baseApi";
 import authReducer from "./features/auth/authSlice";
 
 import {
-  FLUSH,
-  PAUSE,
-  PERSIST,
-  persistReducer,
-  persistStore,
-  PURGE,
-  REGISTER,
-  REHYDRATE,
+    FLUSH,
+    PAUSE,
+    PERSIST,
+    persistReducer,
+    persistStore,
+    PURGE,
+    REGISTER,
+    REHYDRATE,
 } from "redux-persist";
 
 import storage from "redux-persist/lib/storage";

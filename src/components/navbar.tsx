@@ -1,8 +1,12 @@
 import logoDark from "@/assets/image/logo/logo-dark.png";
 import logo from "@/assets/image/logo/logo.svg";
-import { LucideMenu, X } from "lucide-react";
+import { logOut } from "@/redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { LucideMenu, User2, X } from "lucide-react";
 import { FC, useState } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
+import AvatarDropdown from "./avatar-dropdown";
 import { ModeToggle } from "./mode-toggle";
 import { useTheme } from "./theme-provider";
 import { Button } from "./ui/button";
@@ -10,11 +14,31 @@ import { Button } from "./ui/button";
 const Navbar: FC = () => {
     const { theme } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
+    const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+    const token = useAppSelector((state) => state.auth.token);
+    const handleDropdownToggle = () => {
+        setIsDropdownOpen(!isDropdownOpen);
+    };
+    
+    const navigate = useNavigate();
+    const dispatch = useAppDispatch();
+
+    const handleLogout = async () => {
+        dispatch(logOut());
+        toast.success("Logout Successfully");
+        navigate("/");
+    };
 
     return (
         <header className="flex border-b py-4 px-4 sm:px-10  tracking-wide relative z-50">
             <div className="flex flex-wrap items-center justify-between gap-5 w-full">
-                <Link to={"/"}>
+                <Link
+                    to={"/"}
+                    onClick={() => {
+                        setIsOpen(false);
+                        setIsDropdownOpen(false);
+                    }}
+                >
                     {theme == "dark" || theme == "system" ? (
                         <img src={logoDark} alt="logo" className="w-24" />
                     ) : (
@@ -33,7 +57,13 @@ const Navbar: FC = () => {
                     </button>
                     <ul className="lg:flex gap-x-5 max-lg:space-y-3 max-lg:fixed max-lg:bg-background max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
                         <li className="mb-6 hidden max-lg:block">
-                            <Link to={"/"}>
+                            <Link
+                                to={"/"}
+                                onClick={() => {
+                                    setIsOpen(false);
+                                    setIsDropdownOpen(false);
+                                }}
+                            >
                                 {theme == "dark" ? (
                                     <img
                                         src={logoDark}
@@ -84,18 +114,44 @@ const Navbar: FC = () => {
                         </li>
                     </ul>
                 </div>
-                <div className="flex max-lg:ml-auto space-x-3">
+                <div className="flex items-center max-lg:ml-auto space-x-3">
                     <ModeToggle />
-                    <Button asChild>
-                        <Link to={"/login"} className="hidden md:flex">
-                            Login
-                        </Link>
-                    </Button>
-                    <Button asChild variant={'outline'}>
-                        <Link to={"/register"} className="hidden md:flex">
-                            Register
-                        </Link>
-                    </Button>
+                    {token ? (
+                        <div className="relative">
+                            <button
+                                onClick={handleDropdownToggle}
+                                className="flex items-center space-x-2"
+                            >
+                                <User2 size={25} />
+                            </button>
+                            <div
+                                onClick={() => setIsDropdownOpen(false)}
+                                className={`fixed inset-0 z-10 w-full h-full ${
+                                    isDropdownOpen ? "" : "hidden"
+                                }`}
+                            ></div>
+                            {isDropdownOpen && (
+                                <AvatarDropdown handleLogout={handleLogout} />
+                            )}
+                        </div>
+                    ) : (
+                        <>
+                            <Button asChild>
+                                <Link to={"/login"} className="hidden md:flex">
+                                    Login
+                                </Link>
+                            </Button>
+                            <Button asChild variant={"outline"}>
+                                <Link
+                                    to={"/register"}
+                                    className="hidden md:flex"
+                                >
+                                    Register
+                                </Link>
+                            </Button>
+                        </>
+                    )}
+
                     <button
                         onClick={() => setIsOpen(true)}
                         className="lg:hidden"

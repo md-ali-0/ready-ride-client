@@ -41,8 +41,12 @@ const Login: FC = () => {
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
         try {
             const res = await loginUser(data).unwrap();
-            const user = verifyToken(res.data.accessToken) as IUser;
-            dispatch(setUser({ user: user, token: res.data.accessToken }));
+            console.log(res);
+            
+            const user = verifyToken(res?.token) as IUser;
+            console.log(user);
+            
+            dispatch(setUser({ user: user, token: res?.token }));
         } catch (error) {
             toast.error(error?.data?.message || "Something went wrong");
         }

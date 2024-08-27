@@ -7,24 +7,15 @@ const userApi = baseApi.injectEndpoints({
         getMe: builder.query({
             query: () => {
                 return {
-                    url: `/user/me`,
+                    url: `/users/me`,
                 };
             },
             transformResponse: (response: TResponseRedux<IUserData>) => {
                 return response.data;
             },
             providesTags: ["userData"],
-        }),
-        createUser: builder.mutation({
-            query: (data) => {
-                return {
-                    url: "/user/create-user",
-                    method: "POST",
-                    body: data,
-                };
-            },
-        }),
+        })
     }),
 });
 
-export const { useGetMeQuery, useCreateUserMutation } = userApi;
+export const { useGetMeQuery } = userApi;

@@ -1,17 +1,16 @@
 import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks";
 import {
+    LogOutIcon,
     LucideBadgeInfo,
     LucideClipboardList,
     LucideHeart,
-    LucideLightbulb,
     LucideUser,
-    LucideUserRound,
+    LucideUserRound
 } from "lucide-react";
 import { FC, useEffect } from "react";
-import { LuLogOut } from "react-icons/lu";
+
 import { Link } from "react-router-dom";
-import ThemeSwitcher from "./theme-switcher";
 
 interface AvatarDropdownProps {
     handleLogout: () => void;
@@ -43,7 +42,7 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ handleLogout }) => {
                             <div className="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center text-neutral-100 uppercase font-semibold shadow-inner rounded-full w-12 h-12 ring-1 ring-white dark:ring-neutral-900">
                                 {userData?.avatar ? (
                                     <img
-                                        alt="John Doe"
+                                        alt={userData?.name}
                                         src={userData?.avatar}
                                         data-nimg="fill"
                                         className="absolute inset-0 w-full h-full object-cover rounded-full"
@@ -65,9 +64,9 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ handleLogout }) => {
 
                         <div className="flex-grow">
                             <h4 className="font-semibold">{userData?.name}</h4>
-                            {/* <p className="text-xs mt-0.5">
-                                {userData?.city + " " + userData?.state}
-                            </p> */}
+                            <p className="text-xs mt-0.5">
+                                {userData?.address}
+                            </p>
                         </div>
                     </div>
                     <div className="w-full border-b border-neutral-200 dark:border-neutral-700" />
@@ -120,22 +119,6 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ handleLogout }) => {
                         </div>
                     </Link>
                     <div className="w-full border-b border-neutral-200 dark:border-neutral-700" />
-                    <div className="flex items-center justify-between p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50">
-                        <div className="flex items-center">
-                            <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                                <LucideLightbulb size={20} />
-                            </div>
-                            <div className="ml-4">
-                                <p className="text-sm font-medium ">
-                                    Dark theme
-                                </p>
-                            </div>
-                        </div>
-                        <div className="inline-flex">
-                            <span className="sr-only">Enable dark mode</span>
-                            <ThemeSwitcher />
-                        </div>
-                    </div>
                     <Link
                         className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
                         to={"/help"}
@@ -152,7 +135,7 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ handleLogout }) => {
                         onClick={handleLogout}
                     >
                         <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                            <LuLogOut size={20} />
+                            <LogOutIcon size={20} />
                         </div>
                         <div className="ml-4">
                             <p className="text-sm font-medium ">Log out</p>

@@ -14,8 +14,17 @@ const userApi = baseApi.injectEndpoints({
                 return response.data;
             },
             providesTags: ["userData"],
+        }),
+        updateProfile: builder.mutation({
+            query: (data)=>{
+                return {
+                    url: `/users/me`,
+                    method: 'PUT',
+                    body: data
+                }
+            }
         })
     }),
 });
 
-export const { useGetMeQuery } = userApi;
+export const { useGetMeQuery , useUpdateProfileMutation } = userApi;

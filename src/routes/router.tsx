@@ -5,6 +5,7 @@ import ContactUs from "@/pages/contact-us";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
 import NotFound from "@/pages/not-found";
+import Profile from "@/pages/profile";
 import Register from "@/pages/register";
 import { createBrowserRouter } from "react-router-dom";
 
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
             {
                 path: "/Register",
                 element: <Register />,
+            },
+            {
+                path: "/profile",
+                element: <Profile />,
             },
         ],
     },

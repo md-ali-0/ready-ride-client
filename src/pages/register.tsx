@@ -1,15 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { FC } from "react";
+import { useSignUpUserMutation } from "@/redux/features/auth/authApi";
+import { FC, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 interface FormValues {
     name: string;
     email: string;
     password: string;
     confirmPassword: string;
+    phone: string;
+    address: string;
 }
 
 const Register: FC = () => {
@@ -20,22 +24,18 @@ const Register: FC = () => {
         formState: { errors },
     } = useForm<FormValues>();
 
-    // const [createUser, { isSuccess }] = useCreateUserMutation();
-    // const navigate = useNavigate();
+    const [createUser, { isSuccess }] = useSignUpUserMutation();
+    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     if (isSuccess) {
-    //         toast.success("User Created Successfully");
-    //         navigate("/login");
-    //     }
-    // }, [isSuccess, navigate]);
+    useEffect(() => {
+        if (isSuccess) {
+            toast.success("User Created Successfully");
+            navigate("/login");
+        }
+    }, [isSuccess, navigate]);
 
     const onSubmit: SubmitHandler<FormValues> = (data) => {
-        const userData = new FormData();
-        userData.append("data", JSON.stringify(data));
-        // createUser(userData);
-        console.log(data);
-        
+        createUser(data);
     };
 
     const password = watch("password");
@@ -46,10 +46,10 @@ const Register: FC = () => {
                 <div className="mx-auto w-full max-w-md space-y-8">
                     <div>
                         <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-foreground">
-                            Register for Sports Mart
+                            Register for Ready Ride
                         </h2>
                         <p className="mt-2 text-center text-sm text-muted-foreground">
-                            Create an account to start shopping
+                            Create an account to booking bike
                         </p>
                     </div>
                     <form
@@ -144,6 +144,44 @@ const Register: FC = () => {
                             {errors.confirmPassword && (
                                 <p className="text-red-500 text-sm mt-1">
                                     {errors.confirmPassword.message}
+                                </p>
+                            )}
+                        </div>
+                        <div>
+                            <Label htmlFor="phone" className="sr-only">
+                                Phone
+                            </Label>
+                            <Input
+                                id="phone"
+                                type="text"
+                                autoComplete="phone"
+                                placeholder="Phone Number"
+                                {...register("phone", {
+                                    required: "Phone is required",
+                                })}
+                            />
+                            {errors.phone && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    {errors.phone.message}
+                                </p>
+                            )}
+                        </div>
+                        <div>
+                            <Label htmlFor="address" className="sr-only">
+                                Address
+                            </Label>
+                            <Input
+                                id="address"
+                                type="text"
+                                autoComplete="address"
+                                placeholder="Address"
+                                {...register("address", {
+                                    required: "Address is required",
+                                })}
+                            />
+                            {errors.address && (
+                                <p className="text-red-500 text-sm mt-1">
+                                    {errors.address.message}
                                 </p>
                             )}
                         </div>

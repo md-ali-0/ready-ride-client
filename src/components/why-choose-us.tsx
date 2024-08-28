@@ -14,8 +14,8 @@ const WhyChooseUs: FC = () => {
                     </p>
                 </div>
                 <div className="grid gap-4 row-gap-5 sm:grid-cols-2 lg:grid-cols-4">
-                    <div className="group relative cursor-pointer overflow-hidden bg-background border px-5 py-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm sm:rounded-xl sm:px-10">
-                        <span className="absolute top-8 z-0 h-20 w-20 rounded-full bg-gradient-to-r from-primary to-pink-600 transition-all duration-300 group-hover:scale-[10]" />
+                    <div className="group relative cursor-pointer overflow-hidden bg-background border px-5 py-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm rounded-xl sm:px-10">
+                        <span className="absolute top-8 z-0 h-20 w-20 rounded-full bg-gradient-to-r from-primary to-pink-600 transition-all duration-300 group-hover:scale-[20]" />
                         <div className="relative z-10 mx-auto max-w-md">
                             <span className="grid h-20 w-20 place-items-center rounded-full bg-primary transition-all duration-300 group-hover:bg-primary">
                                 <Bike className="h-10 w-10 text-white transition-all" />
@@ -32,8 +32,8 @@ const WhyChooseUs: FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="group relative cursor-pointer overflow-hidden bg-background border px-5 py-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm sm:rounded-xl sm:px-10">
-                        <span className="absolute top-8 z-0 h-20 w-20 rounded-full bg-gradient-to-r from-primary to-pink-600 transition-all duration-300 group-hover:scale-[10]" />
+                    <div className="group relative cursor-pointer overflow-hidden bg-background border px-5 py-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm rounded-xl sm:px-10">
+                        <span className="absolute top-8 z-0 h-20 w-20 rounded-full bg-gradient-to-r from-primary to-pink-600 transition-all duration-300 group-hover:scale-[20]" />
                         <div className="relative z-10 mx-auto max-w-md">
                             <span className="grid h-20 w-20 place-items-center rounded-full bg-primary transition-all duration-300 group-hover:bg-primary">
                                 <CircleDollarSign className="h-10 w-10 text-white transition-all" />
@@ -49,8 +49,8 @@ const WhyChooseUs: FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="group relative cursor-pointer overflow-hidden bg-background border px-5 py-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm sm:rounded-xl sm:px-10">
-                        <span className="absolute top-8 z-0 h-20 w-20 rounded-full bg-gradient-to-r from-primary to-pink-600 transition-all duration-300 group-hover:scale-[10]" />
+                    <div className="group relative cursor-pointer overflow-hidden bg-background border px-5 py-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm rounded-xl sm:px-10">
+                        <span className="absolute top-8 z-0 h-20 w-20 rounded-full bg-gradient-to-r from-primary to-pink-600 transition-all duration-300 group-hover:scale-[20]" />
                         <div className="relative z-10 mx-auto max-w-md">
                             <span className="grid h-20 w-20 place-items-center rounded-full bg-primary transition-all duration-300 group-hover:bg-primary">
                                 <MapPin className="h-10 w-10 text-white transition-all" />
@@ -67,8 +67,8 @@ const WhyChooseUs: FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="group relative cursor-pointer overflow-hidden bg-background border px-5 py-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm sm:rounded-xl sm:px-10">
-                        <span className="absolute top-8 z-0 h-20 w-20 rounded-full bg-gradient-to-r from-primary to-pink-600 transition-all duration-300 group-hover:scale-[10]" />
+                    <div className="group relative cursor-pointer overflow-hidden bg-background border px-5 py-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl sm:mx-auto sm:max-w-sm rounded-xl sm:px-10">
+                        <span className="absolute top-8 z-0 h-20 w-20 rounded-full bg-gradient-to-r from-primary to-pink-600 transition-all duration-300 group-hover:scale-[20]" />
                         <div className="relative z-10 mx-auto max-w-md">
                             <span className="grid h-20 w-20 place-items-center rounded-full bg-primary transition-all duration-300 group-hover:bg-primary">
                                 <Headset className="h-10 w-10 text-white transition-all" />

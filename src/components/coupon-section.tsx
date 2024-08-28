@@ -13,7 +13,7 @@ const CouponSection = () => {
     return (
         <div className="container mx-auto">
             <div className="relative bg-gradient-to-r from-rose-700 from-0% via-red-500 to-pink-500 rounded-xl overflow-hidden sm:h-[390px]">
-                <div className="flex flex-col-reverse sm:flex-row justify-between items-center px-5 sm:px-10 py-5">
+                <div className="flex flex-col-reverse sm:flex-row justify-between items-center px-5 sm:px-10 py-5 md:px-20">
                     <div className="text-white text-center sm:text-left">
                         <div className="text-xl sm:text-3xl font-medium sm:font-bold mb-4">
                             Special Offer!
@@ -26,8 +26,8 @@ const CouponSection = () => {
                             your first purchase!
                         </div>
                         <div className="text-base mb-4">Use coupon code:</div>
-                        <div className="bg-white text-gray-800 rounded-lg px-3 py-1.5 flex items-center justify-between">
-                            <span className="text-lg sm:text-2xl font-semibold">
+                        <div className="bg-red-300 bg-opacity-60 text-gray-800 rounded-lg px-3 py-1.5 flex items-center justify-between">
+                            <span className="text-lg sm:text-2xl text-slate-200 font-semibold">
                                 Bike2024
                             </span>
                             <Button size={"sm"} onClick={cuponCopy}>

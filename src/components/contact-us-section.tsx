@@ -29,7 +29,7 @@ const ContactUsSection: FC = () => {
                         <h2 className="text-xl font-bold mb-6">Find us here</h2>
                         <div className="space-y-4">
                             <div className="flex items-start space-x-4">
-                                <Button variant={'outline'} size={'icon'}>
+                                <Button variant={"outline"} size={"icon"}>
                                     <MapPin className="text-xl text-gray-500 dark:text-gray-300" />
                                 </Button>
                                 <div>
@@ -38,7 +38,7 @@ const ContactUsSection: FC = () => {
                                 </div>
                             </div>
                             <div className="flex items-start space-x-4">
-                                <Button variant={'outline'} size={'icon'}>
+                                <Button variant={"outline"} size={"icon"}>
                                     <Mail className="text-xl text-gray-500 dark:text-gray-300" />
                                 </Button>
                                 <div>
@@ -47,7 +47,7 @@ const ContactUsSection: FC = () => {
                                 </div>
                             </div>
                             <div className="flex items-start space-x-4">
-                                <Button variant={'outline'} size={'icon'}>
+                                <Button variant={"outline"} size={"icon"}>
                                     <Phone className="text-xl text-gray-500 dark:text-gray-300" />
                                 </Button>
                                 <div>
@@ -72,7 +72,8 @@ const ContactUsSection: FC = () => {
                                         className="block font-semibold mb-2"
                                         htmlFor="name"
                                     >
-                                        Your Name <span className="text-red-600">*</span>
+                                        Your Name{" "}
+                                        <span className="text-red-600">*</span>
                                     </label>
                                     <Input
                                         id="name"
@@ -86,7 +87,8 @@ const ContactUsSection: FC = () => {
                                         className="block font-semibold mb-2"
                                         htmlFor="email"
                                     >
-                                        Your Email <span className="text-red-600">*</span>
+                                        Your Email{" "}
+                                        <span className="text-red-600">*</span>
                                     </label>
                                     <Input
                                         id="email"
@@ -101,7 +103,8 @@ const ContactUsSection: FC = () => {
                                     className="block font-semibold mb-2"
                                     htmlFor="subject"
                                 >
-                                    Subject <span className="text-red-600">*</span>
+                                    Subject{" "}
+                                    <span className="text-red-600">*</span>
                                 </label>
                                 <Input
                                     id="subject"
@@ -115,7 +118,8 @@ const ContactUsSection: FC = () => {
                                     className="block font-semibold mb-2"
                                     htmlFor="message"
                                 >
-                                    Message <span className="text-red-600">*</span>
+                                    Message{" "}
+                                    <span className="text-red-600">*</span>
                                 </label>
                                 <Textarea
                                     id="message"
@@ -124,7 +128,13 @@ const ContactUsSection: FC = () => {
                                     rows={3}
                                 ></Textarea>
                             </div>
-                            <Button type="submit" size={'lg'} className="rounded-full w-full sm:w-1/2">Send Message</Button>
+                            <Button
+                                type="submit"
+                                size={"lg"}
+                                className="rounded-full w-full sm:w-1/2"
+                            >
+                                Send Message
+                            </Button>
                         </form>
                     </div>
                 </div>

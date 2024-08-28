@@ -1,7 +1,16 @@
-import { FC } from "react";
+import AboutUsSection from "@/components/about-us";
+import ContactInformation from "@/components/contact-information";
+import OurMilestone from "@/components/our-milestone";
+import OurTeam from "@/components/our-team";
 
-const AboutUs: FC = () => {
-    return <div>{/* Your code here */}</div>;
-};
 
-export default AboutUs;
+export default function AboutUs() {
+    return (
+        <>
+            <AboutUsSection />
+            <OurTeam />
+            <OurMilestone/>
+            <ContactInformation />
+        </>
+    );
+}

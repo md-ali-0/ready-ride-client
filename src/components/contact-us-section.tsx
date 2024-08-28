@@ -1,11 +1,4 @@
-import {
-    Facebook,
-    Instagram,
-    Mail,
-    MapPin,
-    Phone,
-    Twitter,
-} from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from "lucide-react";
 import { FC } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";

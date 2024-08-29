@@ -6,6 +6,7 @@ import ContactUs from "@/pages/contact-us";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
 import Bikes from "@/pages/manage-bikes";
+import MyRentals from "@/pages/my-rentals";
 import NotFound from "@/pages/not-found";
 import PaymentPage from "@/pages/payment";
 import Profile from "@/pages/profile";
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
             {
                 path: "/payment",
                 element: <PaymentPage />,
+            },
+            {
+                path: "/my-rentals",
+                element: <MyRentals />,
             },
         ],
     },

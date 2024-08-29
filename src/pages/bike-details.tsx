@@ -20,7 +20,7 @@ const BikeDetails: FC = () => {
             toast.error("Something Went Wrong");
         }
     }, [isError, isSuccess, error, data]);
-
+    
     if (isLoading) {
         return <Loading />;
     }

@@ -1,4 +1,4 @@
-import { IBike } from "@/Interface/IBike";
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { TQueryParam, TResponseRedux } from "@/types";
 import { baseApi } from "../../api/baseApi";
 
@@ -21,7 +21,7 @@ const rentalsApi = baseApi.injectEndpoints({
                     params: params,
                 };
             },
-            transformResponse: (response: TResponseRedux<IBike[]>) => {
+            transformResponse: (response: TResponseRedux<any>) => {
                 return {
                     data: response.data,
                     meta: response.meta,

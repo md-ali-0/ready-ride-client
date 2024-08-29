@@ -5,8 +5,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCretePaymentIntentMutation } from "@/redux/features/payment/paymentApi";
 import { useCreateRentalsMutation } from "@/redux/features/rentals/rentalApi";
+import { removeRentalData } from "@/redux/features/rentals/rentalSlice";
 import { useGetMeQuery } from "@/redux/features/user/userApi";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
     CardElement,
     Elements,
@@ -38,7 +39,8 @@ const PaymentForm: FC = () => {
     const { data: userData, isLoading } = useGetMeQuery(undefined);
     const [isPaymentSuccessful, setIsPaymentSuccessful] = useState(false);
     const navigate = useNavigate()
-    
+    const dispatch = useAppDispatch()
+
     const {
         register,
         handleSubmit,
@@ -66,7 +68,7 @@ const PaymentForm: FC = () => {
 
         try {
             const paymentData = {
-                amount: 100,
+                amount: rentalData.amount,
                 currency: "bdt",
             };
 
@@ -95,7 +97,10 @@ const PaymentForm: FC = () => {
             } else {
                 if (paymentResult.paymentIntent?.status === "succeeded") {
                     setIsPaymentSuccessful(true);
-                    await createRental(rentalData);
+                    dispatch(removeRentalData())
+                    if (rentalData.isBooking) {
+                        await createRental(rentalData);
+                    }
                 }
             }
         } catch (error) {
@@ -180,7 +185,7 @@ const PaymentForm: FC = () => {
                 <div>
                     <h3 className="text-xl sm:text-2xl font-medium">
                         Booking Cost:{" "}
-                        <span className="text-green-600">100 Taka</span>
+                        <span className="text-green-600">{rentalData.amount || 0} Taka</span>
                     </h3>
                 </div>
                 <CardElement className="border p-2 rounded" />
@@ -219,7 +224,7 @@ const PaymentForm: FC = () => {
 const PaymentPage: FC = () => {
     return (
         <Elements stripe={stripePromise}>
-            <div className="font-sans bg-white p-4">
+            <div className="p-4">
                 <div className="max-w-4xl mx-auto">
                     <div className="flex flex-col items-center gap-2 mb-8 md:mb-12">
                         <h2 className="text-2xl font-bold tracking-tight md:text-3xl">

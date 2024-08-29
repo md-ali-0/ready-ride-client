@@ -43,6 +43,8 @@ const BookingModal = ({ bike, open, onClose }: BookingModalProps) => {
         const RentalData = {
             bikeId: bike._id,
             startTime: startTimeAndDate,
+            amount: 100,
+            isBooking: true,
         };
         dispatch(setRentalData(RentalData))
         onClose();

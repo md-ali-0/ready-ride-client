@@ -4,6 +4,7 @@ import { FC } from "react";
 import { Link } from "react-router-dom";
 
 const HeroBanner: FC = () => {
+    
     return (
         <section
             className={`relative bg-cover bg-right sm:bg-center bg-no-repeat`}
@@ -16,8 +17,7 @@ const HeroBanner: FC = () => {
                     <h1 className="text-3xl font-extrabold text-white sm:text-5xl">
                         Ride Through the City
                         <strong className="block font-extrabold text-primary">
-                            {" "}
-                            at Your Own Pace.{" "}
+                            at Your Own Pace.
                         </strong>
                     </h1>
 

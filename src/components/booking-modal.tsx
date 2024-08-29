@@ -4,9 +4,10 @@ import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { IBike } from "@/Interface/IBike";
-import { useCreateRentalsMutation } from "@/redux/features/rentals/rentalApi";
-import { useEffect } from "react";
+import { setRentalData } from "@/redux/features/rentals/rentalSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 interface BookingModalProps {
@@ -27,14 +28,10 @@ const BookingModal = ({ bike, open, onClose }: BookingModalProps) => {
             startTime: "",
         },
     });
-    const [createRental, { isError }] = useCreateRentalsMutation()
+    
+    const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        if (isError) {
-            toast.error("Something Went Wrong");
-        }
-    }, [isError]);
-
+    const navigate = useNavigate()
 
     const onSubmit = async (data: any) => {
         const startDate = data.startDate;
@@ -47,10 +44,11 @@ const BookingModal = ({ bike, open, onClose }: BookingModalProps) => {
             bikeId: bike._id,
             startTime: startTimeAndDate,
         };
-        createRental(RentalData)
+        dispatch(setRentalData(RentalData))
         onClose();
         reset();
-        toast.success("Redirecting to Payment Page...");
+        toast.success("Redirecting to Payment Page...",{duration: 1000});
+        setTimeout(()=>navigate('/payment'),1000)
     };
 
     return (
@@ -61,7 +59,7 @@ const BookingModal = ({ bike, open, onClose }: BookingModalProps) => {
                 </DialogHeader>
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <div className="grid gap-4 py-4">
-                        <div className="grid grid-cols-4 items-center gap-4">
+                        <div>
                             <Label htmlFor="startDate" className="text-right">
                                 Start Date
                             </Label>
@@ -79,7 +77,7 @@ const BookingModal = ({ bike, open, onClose }: BookingModalProps) => {
                                 </p>
                             )}
                         </div>
-                        <div className="grid grid-cols-4 items-center gap-4">
+                        <div>
                             <Label htmlFor="startTime" className="text-right">
                                 Start Time
                             </Label>

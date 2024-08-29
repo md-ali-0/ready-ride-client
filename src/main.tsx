@@ -15,7 +15,7 @@ createRoot(document.getElementById("root")!).render(
             <PersistGate loading={null} persistor={persistor}>
                 <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
                     <RouterProvider router={router} />
-                    <Toaster richColors={true}/>
+                    <Toaster richColors={true} duration={2000}/>
                 </ThemeProvider>
             </PersistGate>
         </Provider>

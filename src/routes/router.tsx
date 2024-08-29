@@ -7,6 +7,7 @@ import Home from "@/pages/home";
 import Login from "@/pages/login";
 import Bikes from "@/pages/manage-bikes";
 import NotFound from "@/pages/not-found";
+import PaymentPage from "@/pages/payment";
 import Profile from "@/pages/profile";
 import Register from "@/pages/register";
 import { createBrowserRouter } from "react-router-dom";
@@ -48,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: "/bike-details/:id",
                 element: <BikeDetails />,
+            },
+            {
+                path: "/payment",
+                element: <PaymentPage />,
             },
         ],
     },

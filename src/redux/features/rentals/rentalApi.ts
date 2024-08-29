@@ -2,7 +2,7 @@ import { IBike } from "@/Interface/IBike";
 import { TQueryParam, TResponseRedux } from "@/types";
 import { baseApi } from "../../api/baseApi";
 
-const userApi = baseApi.injectEndpoints({
+const rentalsApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getAllRentals: builder.query({
             query: (args) => {
@@ -65,4 +65,4 @@ export const {
     useCreateRentalsMutation,
     useReturnRentalsMutation,
     useDeleteRentalsMutation,
-} = userApi;
+} = rentalsApi;

@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "./api/baseApi";
 import authReducer from "./features/auth/authSlice";
+import rentalReducer from "./features/rentals/rentalSlice";
 
 import {
     FLUSH,
@@ -24,6 +25,7 @@ const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
     reducer: {
+        rental: rentalReducer,
         auth: persistedAuthReducer,
         [baseApi.reducerPath]: baseApi.reducer,
     },

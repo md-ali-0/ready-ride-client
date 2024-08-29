@@ -2,7 +2,7 @@ import { IBike } from "@/Interface/IBike";
 import { TQueryParam, TResponseRedux } from "@/types";
 import { baseApi } from "../../api/baseApi";
 
-const userApi = baseApi.injectEndpoints({
+const bikeApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
         getAllBikes: builder.query({
             query: (args) => {
@@ -45,4 +45,4 @@ const userApi = baseApi.injectEndpoints({
     }),
 });
 
-export const { useGetAllBikesQuery, useGetBikeDetailsQuery } = userApi;
+export const { useGetAllBikesQuery, useGetBikeDetailsQuery } = bikeApi;

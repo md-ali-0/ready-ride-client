@@ -135,7 +135,7 @@
     }
 
     .dash-content-scroll::-webkit-scrollbar-thumb {
-        @apply bg-primary/25 rounded-xl border shadow-inner transition-all duration-150 ease-in-out;
+        @apply bg-slate-200 dark:bg-slate-700 rounded-xl border shadow-inner transition-all duration-150 ease-in-out;
     }
 }
 

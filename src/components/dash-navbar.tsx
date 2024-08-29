@@ -1,10 +1,13 @@
 import { logOut } from "@/redux/features/auth/authSlice";
 import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { LucideUser, Search } from "lucide-react";
+import { Search } from "lucide-react";
 import { Dispatch, FC, SetStateAction, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Input } from "./ui/input";
+import { Skeleton } from "./ui/skeleton";
 
 interface DashNavbarProps {
     sidebarOpen: boolean;
@@ -17,7 +20,7 @@ const DashNavbar: FC<DashNavbarProps> = ({ sidebarOpen, setSidebarOpen }) => {
     const token = useAppSelector((state) => state.auth.token);
     const [dropdownOpen, setDropdownOpen] = useState(false);
 
-    const { data: userData, refetch } = useGetMeQuery("");
+    const { data: userData, isLoading, refetch } = useGetMeQuery("");
 
     useEffect(() => {
         if (token) {
@@ -59,11 +62,11 @@ const DashNavbar: FC<DashNavbarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                 <div className="relative mx-4 lg:mx-0">
                     <Search
                         fontSize={20}
-                        className="text-gray-400 absolute top-1/2 left-3 -translate-y-1/2"
+                        className="text-gray-400  absolute top-1/2 left-3 -translate-y-1/2"
                     />
 
-                    <input
-                        className="w-32 pl-10 pr-4 focus:outline-none rounded-md form-input sm:w-64 focus:border-indigo-600"
+                    <Input
+                        className="w-64 pl-10 pr-4"
                         type="text"
                         placeholder="Search"
                     />
@@ -77,24 +80,20 @@ const DashNavbar: FC<DashNavbarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                             onClick={() => setDropdownOpen(!dropdownOpen)}
                             className="relative block w-10 h-10 overflow-hidden rounded-full shadow focus:outline-none"
                         >
-                            {userData?.avatar ? (
-                                <img
-                                    alt={userData?.name}
-                                    src={userData?.avatar}
-                                    data-nimg="fill"
-                                    className="absolute inset-0 w-full h-full object-cover rounded-full"
-                                    style={{
-                                        position: "absolute",
-                                        height: "100%",
-                                        width: "100%",
-                                        inset: 0,
-                                        color: "transparent",
-                                    }}
-                                />
-                            ) : (
-                                <div className="size-12 flex justify-center items-center rounded-full bg-slate-400">
-                                    <LucideUser size={30} />
+                            {isLoading ? (
+                                <div className="flex items-center space-x-4">
+                                    <Skeleton className="size-10 rounded-full" />
                                 </div>
+                            ) : (
+                                <Avatar>
+                                    <AvatarImage
+                                        src={userData?.avatar}
+                                        alt={userData?.name}
+                                    />
+                                    <AvatarFallback>
+                                        {userData?.name.split("")[0]}
+                                    </AvatarFallback>
+                                </Avatar>
                             )}
                         </button>
 
@@ -106,19 +105,19 @@ const DashNavbar: FC<DashNavbarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                         ></div>
 
                         <div
-                            className={`absolute right-0 z-10 w-48 mt-2 overflow-hidden bg-white rounded-md shadow-xl ${
+                            className={`absolute right-0 z-10 w-48 mt-2 overflow-hidden bg-white dark:bg-muted rounded-md shadow-xl ${
                                 dropdownOpen ? "" : "hidden"
                             }`}
                         >
                             <Link
                                 to="/dashboard/profile"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+                                className="block px-4 py-2 text-sm hover:bg-primary hover:text-white"
                             >
                                 Profile
                             </Link>
                             <div
                                 onClick={handleLogout}
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-600 hover:text-white"
+                                className="block px-4 py-2 text-sm hover:bg-primary hover:text-white"
                             >
                                 Logout
                             </div>

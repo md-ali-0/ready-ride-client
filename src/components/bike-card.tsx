@@ -1,5 +1,6 @@
 import { IBike } from "@/Interface/IBike";
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import { ShareModal } from "./share-modal";
 import { Button } from "./ui/button";
 
@@ -42,8 +43,10 @@ const BikeCard: FC<BikeCardProps> = ({ bike }) => {
                 </div>
             </div>
             <div className="flex justify-between items-center">
-                <Button variant={"outline"} size={"sm"}>
+                <Button variant={"outline"} size={"sm"} asChild>
+                    <Link to={`/bike-details/${bike._id}`}>
                     View Details
+                    </Link>
                 </Button>
 
                 <ShareModal id={bike._id}/>

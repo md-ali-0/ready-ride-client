@@ -4,12 +4,12 @@ import { baseApi } from "../../api/baseApi";
 
 const userApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getAllBikes: builder.query({
+        getAllRentals: builder.query({
             query: (args) => {
                 const params = new URLSearchParams();
                 if (args) {
                     console.log(args);
-                    
+
                     args.forEach((item: TQueryParam) => {
                         if (item.value !== undefined) {
                             params.append(item.name, item.value as string);
@@ -17,7 +17,7 @@ const userApi = baseApi.injectEndpoints({
                     });
                 }
                 return {
-                    url: `/bikes`,
+                    url: `/rentals`,
                     params: params,
                 };
             },
@@ -27,22 +27,42 @@ const userApi = baseApi.injectEndpoints({
                     meta: response.meta,
                 };
             },
-            providesTags: ["bikes"],
+            providesTags: ["rentals"],
         }),
-        getBikeDetails: builder.query({
+        createRentals: builder.mutation({
+            query: (data) => {
+                return {
+                    url: `/rentals`,
+                    body: data,
+                    method: "POST",
+                };
+            },
+            invalidatesTags: ["rentals"],
+        }),
+        returnRentals: builder.mutation({
             query: (id) => {
                 return {
-                    url: `/bikes/${id}`,
+                    url: `rentals/${id}/return`,
+                    method: "PUT",
                 };
             },
-            transformResponse: (response: TResponseRedux<IBike>) => {
+            invalidatesTags: ["rentals"],
+        }),
+        deleteRentals: builder.mutation({
+            query: (id) => {
                 return {
-                    data: response.data,
+                    url: `rentals/${id}`,
+                    method: "DELETE",
                 };
             },
-            providesTags: ["bikes"],
-        })
+            invalidatesTags: ["rentals"],
+        }),
     }),
 });
 
-export const { useGetAllBikesQuery, useGetBikeDetailsQuery } = userApi;
+export const {
+    useGetAllRentalsQuery,
+    useCreateRentalsMutation,
+    useReturnRentalsMutation,
+    useDeleteRentalsMutation,
+} = userApi;

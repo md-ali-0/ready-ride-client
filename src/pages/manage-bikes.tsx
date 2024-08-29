@@ -15,10 +15,21 @@ import { useGetAllBikesQuery } from "@/redux/features/bikes/bikeApi";
 import { ChangeEvent, FC, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
+interface Brand {
+    brand: string;
+    country: string;
+    foundedYear: number;
+    popularModels: string[];
+}
+
 const Bikes: FC = () => {
-    const [brands, setBrands] = useState([]);
-    const [selectedBrand, setSelectedBrand] = useState<string | undefined>(undefined);
-    const [selectedAvailability, setSelectedAvailability] = useState<boolean | undefined>(undefined);
+    const [brands, setBrands] = useState<Brand[] | []>([]);
+    const [selectedBrand, setSelectedBrand] = useState<string | undefined>(
+        undefined
+    );
+    const [selectedAvailability, setSelectedAvailability] = useState<
+        boolean | undefined
+    >(undefined);
     const [currentPage, setCurrentPage] = useState<number | undefined>(1);
     const [search, setSearch] = useState<string | undefined>(undefined);
     const [bikesPerPage] = useState(5);
@@ -28,7 +39,7 @@ const Bikes: FC = () => {
         { name: "limit", value: bikesPerPage },
         { name: "page", value: currentPage },
         { name: "brand", value: selectedBrand },
-        { name: "isAvailable", value: selectedAvailability }
+        { name: "isAvailable", value: selectedAvailability },
     ]);
 
     useEffect(() => {
@@ -51,8 +62,8 @@ const Bikes: FC = () => {
 
     const handleAvailabilityChange = (availability: string) => {
         console.log(availability);
-        
-        setSelectedAvailability(availability == 'available' ? true : false);
+
+        setSelectedAvailability(availability == "available" ? true : false);
     };
 
     const clearFilters = () => {
@@ -80,11 +91,16 @@ const Bikes: FC = () => {
                                         id="search"
                                         type="search"
                                         placeholder="Name, Model, etc"
-                                        value={search}
+                                        value={search || ""}
                                         onChange={handleSearchChange}
                                     />
                                 </div>
-                                <Select onValueChange={handleAvailabilityChange}>
+                                <Select
+                                    onValueChange={handleAvailabilityChange}
+                                    defaultValue={
+                                        selectedAvailability ? "" : ""
+                                    }
+                                >
                                     <SelectTrigger className="w-[150px]">
                                         <SelectValue placeholder="By Availability" />
                                     </SelectTrigger>
@@ -99,21 +115,30 @@ const Bikes: FC = () => {
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
-                                <Select onValueChange={handleBrandChange}>
+                                <Select
+                                    onValueChange={handleBrandChange}
+                                    defaultValue={selectedBrand || ""}
+                                >
                                     <SelectTrigger className="w-[150px]">
                                         <SelectValue placeholder="By Brand" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectGroup>
                                             {brands.map((item, idx) => (
-                                                <SelectItem key={idx} value={item?.brand}>
+                                                <SelectItem
+                                                    key={idx}
+                                                    value={item?.brand}
+                                                >
                                                     {item?.brand}
                                                 </SelectItem>
                                             ))}
                                         </SelectGroup>
                                     </SelectContent>
                                 </Select>
-                                <Button variant={"outline"} onClick={clearFilters}>
+                                <Button
+                                    variant={"outline"}
+                                    onClick={clearFilters}
+                                >
                                     Clear
                                 </Button>
                             </div>
@@ -121,11 +146,11 @@ const Bikes: FC = () => {
                         <hr className="py-2" />
                         <div className="grid grid-cols-1 gap-4">
                             {allBikes?.data?.map((bike, index) => (
-                                <div key={index} className="group mx-2 grid grid-cols-12 space-x-5 overflow-hidden rounded-lg border py-8 text-gray-700 dark:text-gray-300 sm:mx-auto">
-                                    <Link
-                                        to="#"
-                                        className="order-2 col-span-1 mt-4 -ml-14 text-left sm:-order-1 sm:ml-4"
-                                    >
+                                <div
+                                    key={index}
+                                    className="group mx-2 grid grid-cols-12 space-x-5 overflow-hidden rounded-lg border py-8 text-gray-700 dark:text-gray-300 sm:mx-auto"
+                                >
+                                    <div className="order-2 col-span-1 mt-4 -ml-14 text-left sm:-order-1 sm:ml-4">
                                         <div className="group relative h-16 w-16 overflow-hidden rounded-lg">
                                             <img
                                                 src={
@@ -135,7 +160,7 @@ const Bikes: FC = () => {
                                                 className="h-full w-full object-cover"
                                             />
                                         </div>
-                                    </Link>
+                                    </div>
                                     <div className="col-span-11 flex flex-col gap-3.5 sm:flex-row pr-8 text-left sm:pl-4">
                                         <div className="flex-1">
                                             <h3 className="text-sm rounded bg-muted text-muted-foreground w-fit px-1 py-0.5">
@@ -195,7 +220,11 @@ const Bikes: FC = () => {
                                             )}
 
                                             <Button className="w-full">
-                                                View Details
+                                                <Link
+                                                    to={`/bike-details/${bike._id}`}
+                                                >
+                                                    View Details
+                                                </Link>
                                             </Button>
                                         </div>
                                     </div>

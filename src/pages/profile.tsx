@@ -7,7 +7,6 @@ import { FC, useState } from "react";
 
 const Profile: FC = () => {
     const { data: userData } = useGetMeQuery([{}]);
-    // console.log(userData);
     const [editDialogOpen, setEditDialogOpen] = useState(false);
     const [userToUpdate, setUserToUpdate] = useState<IUserData | null>(null);
 
@@ -18,16 +17,18 @@ const Profile: FC = () => {
 
     return (
         <div className="container py-12 mx-auto">
-            {/* <div className="bg-primary rounded-3xl py-8 sm:py-14">
-                <h3 className="text-center text-xl md:text-5xl text-primary-foreground font-bold">
-                    Welcome to Profile, {userData?.name}
-                </h3>
-            </div> */}
-            <div className="flex flex-col md:flex-row sm:px-10 gap-10">
-                <UserSidebar name={userData?.name} />
+            <div className="flex flex-col md:flex-row gap-10">
+                <UserSidebar />
 
                 {/* <!-- Main content --> */}
                 <div className="flex-1">
+                    <div className="pb-5">
+                        <div className="bg-primary rounded-2xl py-8 sm:py-8">
+                            <h3 className="text-center text-xl md:text-3xl text-primary-foreground font-bold">
+                                Welcome to Profile, {userData?.name}
+                            </h3>
+                        </div>
+                    </div>
                     <div className="border rounded-lg p-6">
                         <div className="flex justify-between items-center">
                             <h2 className="text-2xl font-semibold mb-4">

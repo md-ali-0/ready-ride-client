@@ -1,21 +1,24 @@
 import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks";
 import {
+    Bike,
     LogOutIcon,
     LucideAppWindow,
     LucideClipboardList,
-    LucideUser,
     LucideUserRound
 } from "lucide-react";
-import { FC, useEffect } from "react";
+import { Dispatch, FC, SetStateAction, useEffect } from "react";
 
 import { Link } from "react-router-dom";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Skeleton } from "./ui/skeleton";
 
 interface AvatarDropdownProps {
+    setIsDropdownOpen: Dispatch<SetStateAction<boolean>>
     handleLogout: () => void;
 }
 
-const AvatarDropdown: FC<AvatarDropdownProps> = ({ handleLogout }) => {
+const AvatarDropdown: FC<AvatarDropdownProps> = ({ setIsDropdownOpen, handleLogout }) => {
     const token = useAppSelector((state) => state.auth.token);
     const user = useAppSelector((state) => state.auth.user);
 
@@ -28,36 +31,28 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ handleLogout }) => {
     }, [token, refetch]);
 
     return (
-        <div
-            className="absolute z-50 w-screen max-w-[260px] px-4 mt-3.5 -right-10 sm:right-0 sm:px-0 opacity-100 translate-y-0"
-        >
+        <div className="absolute z-50 w-screen max-w-[260px] px-4 mt-3.5 -right-10 sm:right-0 sm:px-0 opacity-100 translate-y-0">
             <div className="overflow-hidden rounded-xl shadow-lg ring-1 ring-black ring-opacity-5">
                 <div className="relative grid grid-cols-1 gap-6 bg-white dark:bg-neutral-800 py-7 px-6">
                     <div className="flex items-center space-x-3">
                         {isLoading ? (
-                            <div className="size-12 rounded-full bg-gray-500"></div>
-                        ) : (
-                            <div className="wil-avatar relative flex-shrink-0 inline-flex items-center justify-center text-neutral-100 uppercase font-semibold shadow-inner rounded-full w-12 h-12 ring-1 ring-white dark:ring-neutral-900">
-                                {userData?.avatar ? (
-                                    <img
-                                        alt={userData?.name}
-                                        src={userData?.avatar}
-                                        data-nimg="fill"
-                                        className="absolute inset-0 w-full h-full object-cover rounded-full"
-                                        style={{
-                                            position: "absolute",
-                                            height: "100%",
-                                            width: "100%",
-                                            inset: 0,
-                                            color: "transparent",
-                                        }}
-                                    />
-                                ) : (
-                                    <div className="size-12 flex justify-center items-center rounded-full bg-slate-400">
-                                        <LucideUser size={30} />
-                                    </div>
-                                )}
+                            <div className="flex items-center space-x-4">
+                                <Skeleton className="size-10 rounded-full" />
+                                <div className="space-y-2">
+                                    <Skeleton className="h-4 w-[120px]" />
+                                    <Skeleton className="h-4 w-[150px]" />
+                                </div>
                             </div>
+                        ) : (
+                            <Avatar>
+                                <AvatarImage
+                                    src={userData?.avatar}
+                                    alt={userData?.name}
+                                />
+                                <AvatarFallback>
+                                    {userData?.name.split("")[0]}
+                                </AvatarFallback>
+                            </Avatar>
                         )}
 
                         <div className="flex-grow">
@@ -72,6 +67,7 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ handleLogout }) => {
                         <Link
                             className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
                             to={"/dashboard"}
+                            onClick={()=>setIsDropdownOpen(false)}
                         >
                             <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                                 <LucideAppWindow size={20} />
@@ -86,6 +82,7 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ handleLogout }) => {
                     <Link
                         className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
                         to={"/profile"}
+                        onClick={()=>setIsDropdownOpen(false)}
                     >
                         <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                             <LucideUserRound size={20} />
@@ -96,7 +93,20 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ handleLogout }) => {
                     </Link>
                     <Link
                         className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
+                        to={"/manage-bikes"}
+                        onClick={()=>setIsDropdownOpen(false)}
+                    >
+                        <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                            <Bike size={20} />
+                        </div>
+                        <div className="ml-4">
+                            <p className="text-sm font-medium ">Manage Bikes</p>
+                        </div>
+                    </Link>
+                    <Link
+                        className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
                         to={"/rentals"}
+                        onClick={()=>setIsDropdownOpen(false)}
                     >
                         <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                             <LucideClipboardList size={20} />

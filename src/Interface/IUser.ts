@@ -11,8 +11,10 @@ export interface IUserData {
     email: string;
     password: string;
     phone: string;
+    avatar?: string;
     address: string;
-    role: 'admin' | 'user';
+    isAvailable: boolean;
+    role: "admin" | "user";
     createdAt: Date;
     updatedAt: Date;
 }

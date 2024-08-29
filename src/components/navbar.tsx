@@ -25,6 +25,7 @@ const Navbar: FC = () => {
 
     const handleLogout = async () => {
         dispatch(logOut());
+        setIsDropdownOpen(false)
         toast.success("Logout Successfully");
         navigate("/");
     };
@@ -131,7 +132,7 @@ const Navbar: FC = () => {
                                 }`}
                             ></div>
                             {isDropdownOpen && (
-                                <AvatarDropdown handleLogout={handleLogout} />
+                                <AvatarDropdown handleLogout={handleLogout} setIsDropdownOpen={setIsDropdownOpen}/>
                             )}
                         </div>
                     ) : (

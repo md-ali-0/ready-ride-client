@@ -157,7 +157,7 @@ const EditProfileDialog = ({ user, open, onClose }: EditProfileDialogProps) => {
                             </p>
                         )}
                     </div>
-                    <div>
+                    <div className="col-span-2">
                         <Label htmlFor="address">Address</Label>
                         <Input
                             id="address"

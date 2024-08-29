@@ -1,0 +1,63 @@
+[
+    {
+      "brand": "Yamaha",
+      "country": "Japan",
+      "foundedYear": 1955,
+      "popularModels": ["R1", "MT-09", "FZ-07"]
+    },
+    {
+      "brand": "Honda",
+      "country": "Japan",
+      "foundedYear": 1948,
+      "popularModels": ["CBR600RR", "Africa Twin", "Gold Wing"]
+    },
+    {
+      "brand": "Suzuki",
+      "country": "Japan",
+      "foundedYear": 1909,
+      "popularModels": ["GSX-R1000", "Hayabusa", "V-Strom 650"]
+    },
+    {
+      "brand": "Kawasaki",
+      "country": "Japan",
+      "foundedYear": 1896,
+      "popularModels": ["Ninja H2", "Z1000", "Versys 650"]
+    },
+    {
+      "brand": "Ducati",
+      "country": "Italy",
+      "foundedYear": 1926,
+      "popularModels": ["Panigale V4", "Monster 821", "Multistrada 1260"]
+    },
+    {
+      "brand": "BMW",
+      "country": "Germany",
+      "foundedYear": 1916,
+      "popularModels": ["S1000RR", "R1250GS", "F900XR"]
+    },
+    {
+      "brand": "Harley-Davidson",
+      "country": "United States",
+      "foundedYear": 1903,
+      "popularModels": ["Street Glide", "Fat Boy", "Iron 883"]
+    },
+    {
+      "brand": "Triumph",
+      "country": "United Kingdom",
+      "foundedYear": 1902,
+      "popularModels": ["Bonneville T120", "Street Triple", "Tiger 800"]
+    },
+    {
+      "brand": "KTM",
+      "country": "Austria",
+      "foundedYear": 1934,
+      "popularModels": ["Duke 390", "RC 200", "1290 Super Adventure"]
+    },
+    {
+      "brand": "Royal Enfield",
+      "country": "India",
+      "foundedYear": 1955,
+      "popularModels": ["Classic 350", "Himalayan", "Interceptor 650"]
+    }
+  ]
+  

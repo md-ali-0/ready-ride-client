@@ -7,12 +7,14 @@ const CouponSection = () => {
     const cuponCopy = () => {
         navigator.clipboard.writeText("Bike2024");
         setIsCopied(true);
-        setTimeout(()=>{setIsCopied(false)},1000)
+        setTimeout(() => {
+            setIsCopied(false);
+        }, 1000);
     };
 
     return (
         <div className="container mx-auto">
-            <div className="relative bg-gradient-to-r from-rose-700 from-0% via-red-500 to-pink-500 rounded-xl overflow-hidden sm:h-[390px]">
+            <div className="relative sm:h-[390px] overflow-hidden bg-primary rounded-2xl">
                 <div className="flex flex-col-reverse sm:flex-row justify-between items-center px-5 sm:px-10 py-5 md:px-20">
                     <div className="text-white text-center sm:text-left">
                         <div className="text-xl sm:text-3xl font-medium sm:font-bold mb-4">
@@ -50,6 +52,9 @@ const CouponSection = () => {
                         <img src={couponImage} className="sm:h-[350px] w-fit" />
                     </div>
                 </div>
+
+                <div className="-z-1 absolute bottom-3 left-3 h-24 w-24 rounded-full bg-white bg-gradient-to-b from-white to-red-600 opacity-20"></div>
+                <div className="-z-1 absolute -top-10 left-1/2 h-24 w-24 rounded-full bg-white bg-gradient-to-b from-white to-red-600 opacity-20"></div>
             </div>
         </div>
     );

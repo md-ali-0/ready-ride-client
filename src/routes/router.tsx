@@ -4,6 +4,7 @@ import AboutUs from "@/pages/about-us";
 import ContactUs from "@/pages/contact-us";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
+import Bikes from "@/pages/manage-bikes";
 import NotFound from "@/pages/not-found";
 import Profile from "@/pages/profile";
 import Register from "@/pages/register";
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <Profile />,
+            },
+            {
+                path: "/manage-bikes",
+                element: <Bikes />,
             },
         ],
     },

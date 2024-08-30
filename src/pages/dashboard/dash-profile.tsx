@@ -1,5 +1,5 @@
 import EditProfileDialog from "@/components/handle-edit-profile";
-import { IUserData } from "@/interface/IUser";
+import { IUserData } from "@/Interface/IUserData";
 import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { Edit } from "lucide-react";
 import { FC, useState } from "react";

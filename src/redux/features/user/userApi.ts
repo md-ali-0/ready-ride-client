@@ -1,4 +1,5 @@
-import { IUserData } from "@/interface/IUser";
+
+import { IUserData } from "@/Interface/IUserData";
 import { TResponseRedux } from "@/types";
 import { baseApi } from "../../api/baseApi";
 

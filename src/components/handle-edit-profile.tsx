@@ -8,7 +8,7 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { IUserData } from "@/interface/IUser";
+import { IUserData } from "@/Interface/IUserData";
 import { useUpdateProfileMutation } from "@/redux/features/user/userApi";
 import { ErrorResponse } from "@/types";
 import { SerializedError } from "@reduxjs/toolkit";

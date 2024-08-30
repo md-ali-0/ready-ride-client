@@ -1,5 +1,5 @@
 import { IBike } from "./IBike";
-import { IUserData } from "./IUser";
+import { IUserData } from "./IUserData";
 
 export interface IRental {
     _id: string;

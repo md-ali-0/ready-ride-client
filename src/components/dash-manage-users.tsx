@@ -6,13 +6,14 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IUserData } from "@/interface/IUser";
+
 import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
 import { ColumnDef } from "@tanstack/react-table";
 import { LucideMoreVertical } from "lucide-react";
 import { FC, useEffect, useState } from "react";
 import { toast } from "sonner";
 
+import { IUserData } from "@/Interface/IUserData";
 import DeleteUserDialog from "./dash-delete-user-dialog";
 import EditUserDialog from "./dash-edit-user-dialog";
 import Loading from "./loading";

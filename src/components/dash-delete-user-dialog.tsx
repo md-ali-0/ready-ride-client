@@ -8,7 +8,7 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { IUserData } from "@/interface/IUser";
+import { IUserData } from "@/Interface/IUserData";
 import { useDeleteUserMutation } from "@/redux/features/user/userApi";
 
 import { ErrorResponse } from "@/types";

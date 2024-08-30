@@ -40,6 +40,12 @@
       "country": "India",
       "foundedYear": 1955,
       "popularModels": ["Classic 350", "Himalayan", "Interceptor 650"]
+    },
+    {
+      "brand": "Bajaj",
+      "country": "India",
+      "foundedYear": 1889,
+      "popularModels": ["Pulsar 150", "Pulsar NS160", "Pulsar 200NS", "Avenger Street 160"]
     }
   ]
   

@@ -9,7 +9,7 @@ const bikeApi = baseApi.injectEndpoints({
                 const params = new URLSearchParams();
                 if (args) {
                     console.log(args);
-                    
+
                     args.forEach((item: TQueryParam) => {
                         if (item.value !== undefined) {
                             params.append(item.name, item.value as string);
@@ -47,7 +47,7 @@ const bikeApi = baseApi.injectEndpoints({
                 return {
                     url: `/bikes`,
                     method: "POST",
-                    body: data
+                    body: data,
                 };
             },
             transformResponse: (response: TResponseRedux<IBike>) => {
@@ -56,8 +56,38 @@ const bikeApi = baseApi.injectEndpoints({
                 };
             },
             invalidatesTags: ["bikes"],
-        })
+        }),
+        updateBike: builder.mutation({
+            query: (data) => {
+                return {
+                    url: `/bikes/${data.id}`,
+                    method: "PUT",
+                    body: data.data,
+                };
+            },
+            transformResponse: (response: TResponseRedux<IBike>) => {
+                return {
+                    data: response.data,
+                };
+            },
+            invalidatesTags: ["bikes"],
+        }),
+        deleteBike: builder.mutation({
+            query: (id) => {
+                return {
+                    url: `/bikes/${id}`,
+                    method: "DELETE",
+                };
+            },
+            invalidatesTags: ["bikes"],
+        }),
     }),
 });
 
-export const { useGetAllBikesQuery, useGetBikeDetailsQuery, useCreateBikeMutation } = bikeApi;
+export const {
+    useGetAllBikesQuery,
+    useGetBikeDetailsQuery,
+    useCreateBikeMutation,
+    useUpdateBikeMutation,
+    useDeleteBikeMutation
+} = bikeApi;

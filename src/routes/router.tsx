@@ -3,6 +3,7 @@ import MainLayout from "@/components/layout/main-layout";
 import AboutUs from "@/pages/about-us";
 import BikeDetails from "@/pages/bike-details";
 import ContactUs from "@/pages/contact-us";
+import ManageBikes from "@/pages/dashboard/all-bikes";
 import CreateBike from "@/pages/dashboard/create-bike";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
@@ -69,7 +70,11 @@ const router = createBrowserRouter([
             {
                 path: 'create-bike',
                 element: <CreateBike/>
-            }
+            },
+            {
+                path: 'bikes',
+                element: <ManageBikes/>
+            },
         ]
     },
 ]);

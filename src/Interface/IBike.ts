@@ -1,12 +1,15 @@
 export interface IBike {
     _id: string;
     name: string;
-    image: string;
+    image: string | null;
     description: string;
-    pricePerHour: number;
+    pricePerHour: number | string;
+    cc: number | string;
+    year: number | string;
     isAvailable: boolean;
-    cc: number;
-    year: number;
     model: string;
     brand: string;
+    isFeatured: boolean | string;
+    createdAt: Date;
+    updatedAt: Date;
 }

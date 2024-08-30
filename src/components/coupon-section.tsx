@@ -1,17 +1,30 @@
 import couponImage from "@/assets/image/banner/coupon.png";
+import { useGetAllCouponsQuery } from "@/redux/features/coupon/couponApi";
+import { setcouponData } from "@/redux/features/coupon/couponSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import { useState } from "react";
 import { Button } from "./ui/button";
 
 const CouponSection = () => {
     const [isCopied, setIsCopied] = useState(false);
+    const dispatch = useAppDispatch()
+    const { data } = useGetAllCouponsQuery(undefined)
     const cuponCopy = () => {
         navigator.clipboard.writeText("Bike2024");
         setIsCopied(true);
         setTimeout(() => {
             setIsCopied(false);
         }, 1000);
+        console.log(data);
+        const cuponCode = {
+            code: "Bike25",
+            discountValue: 25,
+            isActive: true,
+            expirationDate: null
+        }
+        dispatch(setcouponData(cuponCode))
     };
-
+    
     return (
         <div className="container mx-auto">
             <div className="relative sm:h-[390px] overflow-hidden bg-primary rounded-2xl">
@@ -47,7 +60,6 @@ const CouponSection = () => {
                             <p>Terms and conditions apply.</p>
                         </div>
                     </div>
-
                     <div className="flex items-center justify-end w-full sm:w-1/2">
                         <img src={couponImage} className="sm:h-[350px] w-fit" />
                     </div>

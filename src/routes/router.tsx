@@ -2,6 +2,8 @@ import DashboardLayout from "@/components/layout/dashboard-layout";
 import MainLayout from "@/components/layout/main-layout";
 import AboutUs from "@/pages/about-us";
 import BikeDetails from "@/pages/bike-details";
+import Bikes from "@/pages/bikes";
+import Comparison from "@/pages/comparison";
 import ContactUs from "@/pages/contact-us";
 import ManageBikes from "@/pages/dashboard/bike-management";
 import ManageCoupons from "@/pages/dashboard/coupon-management";
@@ -11,7 +13,6 @@ import DashProfile from "@/pages/dashboard/dash-profile";
 import ManageUsers from "@/pages/dashboard/user-management";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
-import Bikes from "@/pages/manage-bikes";
 import MyRentals from "@/pages/my-rentals";
 import NotFound from "@/pages/not-found";
 import PaymentPage from "@/pages/payment";
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
                 element: <Profile />,
             },
             {
-                path: "/manage-bikes",
+                path: "/bikes",
                 element: <Bikes />,
             },
             {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
             {
                 path: "/my-rentals",
                 element: <MyRentals />,
+            },
+            {
+                path: "/comparison",
+                element: <Comparison />,
             },
         ],
     },

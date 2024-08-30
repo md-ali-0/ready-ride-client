@@ -19,13 +19,13 @@ const Navbar: FC = () => {
     const handleDropdownToggle = () => {
         setIsDropdownOpen(!isDropdownOpen);
     };
-    
+
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const handleLogout = async () => {
         dispatch(logOut());
-        setIsDropdownOpen(false)
+        setIsDropdownOpen(false);
         toast.success("Logout Successfully");
         navigate("/");
     };
@@ -93,6 +93,29 @@ const Navbar: FC = () => {
                         </li>
                         <li className="max-lg:border-b max-lg:py-3 px-3">
                             <NavLink
+                                to="/bikes"
+                                className={({ isActive }) =>
+                                    isActive ? "nav-link active" : "nav-link"
+                                }
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Bikes
+                            </NavLink>
+                        </li>
+                        <li className="max-lg:border-b max-lg:py-3 px-3">
+                            <NavLink
+                                to="/comparison"
+                                className={({ isActive }) =>
+                                    isActive ? "nav-link active" : "nav-link"
+                                }
+                                onClick={() => setIsOpen(false)}
+                            >
+                                Comparison
+                            </NavLink>
+                        </li>
+
+                        <li className="max-lg:border-b max-lg:py-3 px-3">
+                            <NavLink
                                 to="/about-us"
                                 className={({ isActive }) =>
                                     isActive ? "nav-link active" : "nav-link"
@@ -132,12 +155,15 @@ const Navbar: FC = () => {
                                 }`}
                             ></div>
                             {isDropdownOpen && (
-                                <AvatarDropdown handleLogout={handleLogout} setIsDropdownOpen={setIsDropdownOpen}/>
+                                <AvatarDropdown
+                                    handleLogout={handleLogout}
+                                    setIsDropdownOpen={setIsDropdownOpen}
+                                />
                             )}
                         </div>
                     ) : (
                         <>
-                            <Button asChild variant={'gradient'}>
+                            <Button asChild variant={"gradient"}>
                                 <Link to={"/login"} className="hidden md:flex">
                                     Login
                                 </Link>

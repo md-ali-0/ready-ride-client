@@ -1,7 +1,7 @@
 import { logOut } from "@/redux/features/auth/authSlice";
 import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { useAppDispatch } from "@/redux/hooks";
-import { Bike, LogOut, Shapes, UserRoundPen } from "lucide-react";
+import { LogOut, Shapes, UserRoundPen } from "lucide-react";
 import { FC } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
@@ -30,20 +30,6 @@ const UserSidebar: FC = () => {
                 </div>
                 <nav className="mt-2.5">
                     <ul className="px-3 space-y-1.5">
-                        <li
-                            className={`border-b rounded-lg ${
-                                pathname === "/manage-bikes" &&
-                                "bg-primary text-white"
-                            } hover:bg-primary hover:text-white px-3 py-2`}
-                        >
-                            <NavLink
-                                to="/manage-bikes"
-                                className="flex items-center"
-                            >
-                                <Bike size={20} />
-                                <span className="ml-2">Bikes</span>
-                            </NavLink>
-                        </li>
                         <li
                             className={`border-b rounded-lg ${
                                 pathname === "/my-rentals" &&

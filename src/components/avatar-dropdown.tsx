@@ -1,7 +1,6 @@
 import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { useAppSelector } from "@/redux/hooks";
 import {
-    Bike,
     LogOutIcon,
     LucideAppWindow,
     LucideClipboardList,
@@ -89,18 +88,6 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ setIsDropdownOpen, handleLogo
                         </div>
                         <div className="ml-4">
                             <p className="text-sm font-medium ">My Profile</p>
-                        </div>
-                    </Link>
-                    <Link
-                        className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
-                        to={"/manage-bikes"}
-                        onClick={()=>setIsDropdownOpen(false)}
-                    >
-                        <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                            <Bike size={20} />
-                        </div>
-                        <div className="ml-4">
-                            <p className="text-sm font-medium ">Manage Bikes</p>
                         </div>
                     </Link>
                     <Link

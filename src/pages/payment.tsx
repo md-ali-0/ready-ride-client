@@ -4,7 +4,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogContent, AlertDialogDescript
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCretePaymentIntentMutation } from "@/redux/features/payment/paymentApi";
-import { useCreateRentalsMutation } from "@/redux/features/rentals/rentalApi";
+import { useCreateRentalsMutation, useReturnRentalsMutation } from "@/redux/features/rentals/rentalApi";
 import { removeRentalData } from "@/redux/features/rentals/rentalSlice";
 import { useGetMeQuery } from "@/redux/features/user/userApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -33,6 +33,7 @@ const PaymentForm: FC = () => {
     const stripe = useStripe();
     const elements = useElements();
     const [createRental, { isError }] = useCreateRentalsMutation();
+    const [returnRental] = useReturnRentalsMutation();
     const [cratePaymentIntent, { isError: paymentIntentCreateError }] =
         useCretePaymentIntentMutation();
     const rentalData = useAppSelector((state) => state.rental);
@@ -100,6 +101,9 @@ const PaymentForm: FC = () => {
                     dispatch(removeRentalData())
                     if (rentalData.isBooking) {
                         await createRental(rentalData);
+                    } else {
+                        await returnRental(rentalData);
+                        toast.success("Bike Returned Successfully")
                     }
                 }
             }
@@ -184,7 +188,7 @@ const PaymentForm: FC = () => {
                 </div>
                 <div>
                     <h3 className="text-xl sm:text-2xl font-medium">
-                        Booking Cost:{" "}
+                        Total Cost:{" "}
                         <span className="text-green-600">{rentalData.amount || 0} Taka</span>
                     </h3>
                 </div>

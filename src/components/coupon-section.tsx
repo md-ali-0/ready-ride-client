@@ -7,8 +7,8 @@ import { Button } from "./ui/button";
 
 const CouponSection = () => {
     const [isCopied, setIsCopied] = useState(false);
-    const dispatch = useAppDispatch()
-    const { data } = useGetAllCouponsQuery(undefined)
+    const dispatch = useAppDispatch();
+    const { data } = useGetAllCouponsQuery(undefined);
     const cuponCopy = () => {
         navigator.clipboard.writeText("Bike2024");
         setIsCopied(true);
@@ -20,11 +20,11 @@ const CouponSection = () => {
             code: "Bike25",
             discountValue: 25,
             isActive: true,
-            expirationDate: null
-        }
-        dispatch(setcouponData(cuponCode))
+            expirationDate: null,
+        };
+        dispatch(setcouponData(cuponCode));
     };
-    
+
     return (
         <div className="container mx-auto">
             <div className="relative sm:h-[390px] overflow-hidden bg-primary rounded-2xl">
@@ -43,7 +43,7 @@ const CouponSection = () => {
                         <div className="text-base mb-4">Use coupon code:</div>
                         <div className="bg-red-300 bg-opacity-60 text-gray-800 rounded-lg px-3 py-1.5 flex items-center justify-between">
                             <span className="text-lg sm:text-2xl text-slate-200 font-semibold">
-                                Bike2024
+                                Bike25
                             </span>
                             <Button size={"sm"} onClick={cuponCopy}>
                                 {!isCopied ? "Copy" : "Copied !"}

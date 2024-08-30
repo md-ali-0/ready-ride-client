@@ -28,6 +28,14 @@ const couponApi = baseApi.injectEndpoints({
             },
             providesTags: ["coupons"],
         }),
+        verifyCoupon: builder.mutation({
+            query: (code) => {
+                return {
+                    url: `/coupons/${code}`,
+                    method: "POST"
+                };
+            },
+        }),
         createCoupons: builder.mutation({
             query: (data) => {
                 return {
@@ -62,6 +70,7 @@ const couponApi = baseApi.injectEndpoints({
 
 export const {
     useGetAllCouponsQuery,
+    useVerifyCouponMutation,
     useUpdateCouponsMutation,
     useCreateCouponsMutation,
     useDeletecouponsMutation,

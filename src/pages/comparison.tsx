@@ -18,13 +18,10 @@ export default function Comparison() {
 
     const handleBikeSelect = (bike: IBike) => {
         if (selectedBikes.some((b) => b._id === bike._id)) {
-            // If the bike is already selected, deselect it
             setSelectedBikes(selectedBikes.filter((b) => b._id !== bike._id));
         } else if (selectedBikes.length < 4) {
-            // If less than 4 bikes are selected, add the new bike
             setSelectedBikes([...selectedBikes, bike]);
         } else {
-            // If 4 bikes are selected, remove the first one and add the new one
             setSelectedBikes([...selectedBikes.slice(1), bike]);
         }
     };

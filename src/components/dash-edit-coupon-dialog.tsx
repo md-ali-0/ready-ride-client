@@ -8,8 +8,8 @@ import {
     DialogTitle,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-import { IUserData } from "@/interface/IUser";
-import { useUpdateUserMutation } from "@/redux/features/user/userApi";
+import { ICoupon } from "@/Interface/ICoupon";
+import { useUpdateCouponsMutation } from "@/redux/features/coupon/couponApi";
 import { ErrorResponse } from "@/types";
 import { SerializedError } from "@reduxjs/toolkit";
 import { useEffect } from "react";
@@ -31,25 +31,24 @@ import {
     SelectValue,
 } from "./ui/select";
 
-interface EditUserDialogProps {
-    user: IUserData | null;
+interface EditCouponDialogProps {
+    coupon: ICoupon | null;
     open: boolean;
     onClose: () => void;
 }
 
-const EditUserDialog = ({ user, open, onClose }: EditUserDialogProps) => {
-    const form = useForm<IUserData>({
-        defaultValues: user || {
-            name: "",
-            email: "",
-            password: "",
-            phone: "",
-            address: "",
-            role: "user",
+const EditCouponDialog = ({ coupon, open, onClose }: EditCouponDialogProps) => {
+    const form = useForm<ICoupon>({
+        defaultValues: coupon || {
+            code: "",
+            discountValue: 0,
+            isActive: true,
+            expirationDate: new Date().toISOString().split("T")[0],
         },
     });
 
-    const [updateUser, { isSuccess, isError, error }] = useUpdateUserMutation();
+    const [updateCoupon, { isSuccess, isError, error }] =
+        useUpdateCouponsMutation();
     useEffect(() => {
         if (isError) {
             const errorResponse = error as ErrorResponse | SerializedError;
@@ -60,29 +59,26 @@ const EditUserDialog = ({ user, open, onClose }: EditUserDialogProps) => {
 
             toast.error(errorMessage);
         } else if (isSuccess) {
-            toast.success("User Successfully Updated");
+            toast.success("coupon Successfully Updated");
         }
     }, [isError, isSuccess, error]);
 
     useEffect(() => {
         form.reset(
-            user || {
-                name: "",
-                email: "",
-                password: "",
-                phone: "",
-                address: "",
-                role: "user",
+            coupon || {
+                code: "",
+                discountValue: 0,
+                isActive: true,
+                expirationDate: new Date().toISOString().split("T")[0],
             }
         );
-    }, [user, form, form.reset]);
+    }, [coupon, form, form.reset]);
 
-    const onSubmit = async (data: IUserData) => {
-        const loadingToast = toast.loading("User is Updating...");
-        console.log(data);
-        
-        if (user) {
-            await updateUser({ data: data, id: user._id });
+    const onSubmit = async (data: ICoupon) => {
+        const loadingToast = toast.loading("Coupon is Updating...");
+
+        if (coupon) {
+            await updateCoupon({ data: data, id: coupon._id });
         }
         onClose();
         toast.dismiss(loadingToast);
@@ -95,7 +91,7 @@ const EditUserDialog = ({ user, open, onClose }: EditUserDialogProps) => {
                 className="sm:max-w-[525px]"
             >
                 <DialogHeader>
-                    <DialogTitle>Edit Bike</DialogTitle>
+                    <DialogTitle>Edit coupon</DialogTitle>
                 </DialogHeader>
                 <Form {...form}>
                     <form
@@ -104,36 +100,16 @@ const EditUserDialog = ({ user, open, onClose }: EditUserDialogProps) => {
                     >
                         <FormField
                             control={form.control}
-                            name="name"
+                            name="code"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel htmlFor="name">
-                                        User Name
+                                    <FormLabel htmlFor="code">
+                                        Coupon Code
                                     </FormLabel>
                                     <FormControl>
                                         <Input
-                                            id="name"
-                                            placeholder="Enter User name"
-                                            {...field}
-                                            required
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-
-                        <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel htmlFor="email">Email</FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            id="email"
-                                            type="email"
-                                            placeholder="Enter User Email"
+                                            id="code"
+                                            placeholder="Enter Coupon Code"
                                             {...field}
                                             required
                                         />
@@ -144,19 +120,18 @@ const EditUserDialog = ({ user, open, onClose }: EditUserDialogProps) => {
                         />
                         <FormField
                             control={form.control}
-                            name="password"
+                            name="discountValue"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel htmlFor="password">
-                                        Password
+                                    <FormLabel htmlFor="discountValue">
+                                        Coupon Discount Value
                                     </FormLabel>
                                     <FormControl>
                                         <Input
-                                            id="password"
-                                            type="password"
-                                            placeholder="Enter User password"
+                                            id="discountValue"
+                                            placeholder="Enter Coupon Discount Value"
                                             {...field}
-                                            
+                                            required
                                         />
                                     </FormControl>
                                     <FormMessage />
@@ -165,76 +140,54 @@ const EditUserDialog = ({ user, open, onClose }: EditUserDialogProps) => {
                         />
                         <FormField
                             control={form.control}
-                            name="role"
+                            name="expirationDate"
                             render={({ field }) => (
                                 <FormItem>
-                                    <FormLabel htmlFor="role">
-                                        User Role
+                                    <FormLabel htmlFor="expirationDate">
+                                        Coupon Expiration Date
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            id="expirationDate"
+                                            type="date"
+                                            {...field}
+                                            value={new Date(field.value).toISOString().split("T")[0]}
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="isActive"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="isActive">
+                                        Status
                                     </FormLabel>
                                     <FormControl>
                                         <Select
-                                            onValueChange={(values) =>
-                                                field.onChange(values)
+                                            onValueChange={(values) => {
+                                                field.onChange(values === "1");
+                                            }}
+                                            defaultValue={
+                                                field.value ? "1" : "0"
                                             }
-                                            value={field.value}
-                                            defaultValue=""
+                                            required
                                         >
                                             <SelectTrigger>
-                                                <SelectValue
-                                                    placeholder={"Select Role"}
-                                                />
+                                                <SelectValue placeholder="Select Status" />
                                             </SelectTrigger>
                                             <SelectContent>
-                                                <SelectItem value={"admin"}>
-                                                    Admin
+                                                <SelectItem value={"1"}>
+                                                    Active
                                                 </SelectItem>
-                                                <SelectItem value={"user"}>
-                                                    User
+                                                <SelectItem value={"0"}>
+                                                    Inactive
                                                 </SelectItem>
                                             </SelectContent>
                                         </Select>
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="phone"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel htmlFor="phone">
-                                        Phone
-                                    </FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            id="phone"
-                                            type="text"
-                                            placeholder="Enter User phone"
-                                            {...field}
-                                            required
-                                        />
-                                    </FormControl>
-                                    <FormMessage />
-                                </FormItem>
-                            )}
-                        />
-                        <FormField
-                            control={form.control}
-                            name="address"
-                            render={({ field }) => (
-                                <FormItem>
-                                    <FormLabel htmlFor="address">
-                                        Address
-                                    </FormLabel>
-                                    <FormControl>
-                                        <Input
-                                            id="address"
-                                            type="text"
-                                            placeholder="Enter User address"
-                                            {...field}
-                                            required
-                                        />
                                     </FormControl>
                                     <FormMessage />
                                 </FormItem>
@@ -253,4 +206,4 @@ const EditUserDialog = ({ user, open, onClose }: EditUserDialogProps) => {
     );
 };
 
-export default EditUserDialog;
+export default EditCouponDialog;

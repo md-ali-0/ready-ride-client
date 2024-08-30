@@ -4,7 +4,10 @@ import AboutUs from "@/pages/about-us";
 import BikeDetails from "@/pages/bike-details";
 import ContactUs from "@/pages/contact-us";
 import ManageBikes from "@/pages/dashboard/bike-management";
+import ManageCoupons from "@/pages/dashboard/coupon-management";
 import CreateBike from "@/pages/dashboard/create-bike";
+import CreateCoupon from "@/pages/dashboard/create-coupons";
+import DashProfile from "@/pages/dashboard/dash-profile";
 import ManageUsers from "@/pages/dashboard/user-management";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
@@ -79,6 +82,18 @@ const router = createBrowserRouter([
             {
                 path: 'users',
                 element: <ManageUsers/>
+            },
+            {
+                path: 'profile',
+                element: <DashProfile/>
+            },
+            {
+                path: 'coupons',
+                element: <ManageCoupons/>
+            },
+            {
+                path: 'create-coupon',
+                element: <CreateCoupon/>
             },
         ]
     },

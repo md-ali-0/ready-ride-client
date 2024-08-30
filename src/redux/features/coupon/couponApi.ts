@@ -1,10 +1,11 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
+import { ICoupon } from "@/Interface/ICoupon";
 import { TQueryParam, TResponseRedux } from "@/types";
 import { baseApi } from "../../api/baseApi";
 
-const rentalsApi = baseApi.injectEndpoints({
+const couponApi = baseApi.injectEndpoints({
     endpoints: (builder) => ({
-        getAllRentals: builder.query({
+        getAllCoupons: builder.query({
             query: (args) => {
                 const params = new URLSearchParams();
                 if (args) {
@@ -15,52 +16,53 @@ const rentalsApi = baseApi.injectEndpoints({
                     });
                 }
                 return {
-                    url: `/rentals`,
+                    url: `/coupons`,
                     params: params,
                 };
             },
-            transformResponse: (response: TResponseRedux<any>) => {
+            transformResponse: (response: TResponseRedux<ICoupon[]>) => {
                 return {
                     data: response.data,
                     meta: response.meta,
                 };
             },
-            providesTags: ["rentals"],
+            providesTags: ["coupons"],
         }),
-        createRentals: builder.mutation({
+        createCoupons: builder.mutation({
             query: (data) => {
                 return {
-                    url: `/rentals`,
+                    url: `/coupons`,
                     body: data,
                     method: "POST",
                 };
             },
-            invalidatesTags: ["rentals", "bikes"],
+            invalidatesTags: ["coupons"],
         }),
-        returnRentals: builder.mutation({
-            query: (id) => {
+        updateCoupons: builder.mutation({
+            query: (data) => {
                 return {
-                    url: `rentals/${id}/return`,
+                    url: `/coupons/${data.id}`,
+                    body: data.data,
                     method: "PUT",
                 };
             },
-            invalidatesTags: ["rentals"],
+            invalidatesTags: ["coupons"],
         }),
-        deleteRentals: builder.mutation({
+        deletecoupons: builder.mutation({
             query: (id) => {
                 return {
-                    url: `rentals/${id}`,
+                    url: `coupons/${id}`,
                     method: "DELETE",
                 };
             },
-            invalidatesTags: ["rentals"],
+            invalidatesTags: ["coupons"],
         }),
     }),
 });
 
 export const {
-    useGetAllRentalsQuery,
-    useCreateRentalsMutation,
-    useReturnRentalsMutation,
-    useDeleteRentalsMutation,
-} = rentalsApi;
+    useGetAllCouponsQuery,
+    useUpdateCouponsMutation,
+    useCreateCouponsMutation,
+    useDeletecouponsMutation,
+} = couponApi;

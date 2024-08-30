@@ -66,13 +66,22 @@ const Sidebar: FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                                     path: "/dashboard/rentals",
                                 }}
                             />
-                            <SideBarMenuItem
+                            <SidebarSubMenu
                                 menu={{
                                     name: "Coupons",
                                     icon: "Component",
-                                    path: "/dashboard/coupons",
                                 }}
-                            />
+                                subMenu={[
+                                    {
+                                        name: "Create Coupon",
+                                        path: "/dashboard/create-coupon",
+                                    },
+                                    {
+                                        name: "All Coupons",
+                                        path: "/dashboard/coupons",
+                                    },
+                                ]}
+                            ></SidebarSubMenu>
                             <SideBarMenuItem
                                 menu={{
                                     name: "Users",

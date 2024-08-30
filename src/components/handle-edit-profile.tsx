@@ -10,6 +10,8 @@ import {
 import { Input } from "@/components/ui/input";
 import { IUserData } from "@/interface/IUser";
 import { useUpdateProfileMutation } from "@/redux/features/user/userApi";
+import { ErrorResponse } from "@/types";
+import { SerializedError } from "@reduxjs/toolkit";
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -43,8 +45,15 @@ const EditProfileDialog = ({ user, open, onClose }: EditProfileDialogProps) => {
 
     useEffect(() => {
         if (isError) {
-            toast.error("Something Went Wrong");
+            const errorResponse = error as ErrorResponse | SerializedError;
+
+            const errorMessage =
+                (errorResponse as ErrorResponse)?.data?.message ||
+                "Something Went Wrong";
+
+            toast.error(errorMessage);
         } else if (isSuccess) {
+            toast.success("User Successfully Updated");
             reset();
         }
     }, [isError, isSuccess, error, reset]);
@@ -69,7 +78,7 @@ const EditProfileDialog = ({ user, open, onClose }: EditProfileDialogProps) => {
             await updateProfile(data);
         }
         onClose();
-        toast.success("Profile Updated successfully", { id: loadingToast });
+        toast.dismiss(loadingToast)
     };
 
     return (

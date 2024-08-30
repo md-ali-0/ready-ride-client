@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { baseApi } from "./api/baseApi";
 import authReducer from "./features/auth/authSlice";
+import couponReducer from "./features/coupon/couponSlice";
 import rentalReducer from "./features/rentals/rentalSlice";
 
 import {
@@ -26,6 +27,7 @@ const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 export const store = configureStore({
     reducer: {
         rental: rentalReducer,
+        coupon: couponReducer,
         auth: persistedAuthReducer,
         [baseApi.reducerPath]: baseApi.reducer,
     },

@@ -1,5 +1,6 @@
 import DashboardLayout from "@/components/layout/dashboard-layout";
 import MainLayout from "@/components/layout/main-layout";
+import ProtectedRoute from "@/components/layout/protected-route";
 import AboutUs from "@/pages/about-us";
 import BikeDetails from "@/pages/bike-details";
 import Bikes from "@/pages/bikes";
@@ -49,7 +50,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/profile",
-                element: <Profile />,
+                element: <ProtectedRoute role="user"><Profile /></ProtectedRoute>,
             },
             {
                 path: "/bikes",
@@ -61,11 +62,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/payment",
-                element: <PaymentPage />,
+                element: <ProtectedRoute role="user"><PaymentPage /></ProtectedRoute>,
             },
             {
                 path: "/my-rentals",
-                element: <MyRentals />,
+                element: <ProtectedRoute role="user"><MyRentals /></ProtectedRoute>,
             },
             {
                 path: "/comparison",
@@ -74,38 +75,42 @@ const router = createBrowserRouter([
         ],
     },
     {
-        path: '/dashboard',
-        element: <DashboardLayout/>,
+        path: "/dashboard",
+        element: (
+            <ProtectedRoute role="admin">
+                <DashboardLayout />
+            </ProtectedRoute>
+        ),
         children: [
             {
-                path: 'create-bike',
-                element: <CreateBike/>
+                path: "create-bike",
+                element: <CreateBike />,
             },
             {
-                path: 'bikes',
-                element: <ManageBikes/>
+                path: "bikes",
+                element: <ManageBikes />,
             },
             {
-                path: 'users',
-                element: <ManageUsers/>
+                path: "users",
+                element: <ManageUsers />,
             },
             {
-                path: 'profile',
-                element: <DashProfile/>
+                path: "profile",
+                element: <DashProfile />,
             },
             {
-                path: 'coupons',
-                element: <ManageCoupons/>
+                path: "coupons",
+                element: <ManageCoupons />,
             },
             {
-                path: 'create-coupon',
-                element: <CreateCoupon/>
+                path: "create-coupon",
+                element: <CreateCoupon />,
             },
             {
-                path: 'rentals',
-                element: <ManageRentals/>
+                path: "rentals",
+                element: <ManageRentals />,
             },
-        ]
+        ],
     },
 ]);
 

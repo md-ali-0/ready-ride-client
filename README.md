@@ -1,50 +1,103 @@
-# React + TypeScript + Vite
+# Bike Rental Service Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+The Bike Rental Service Website is a frontend application designed to integrate seamlessly with the backend of the ReadyRide - Bike Rental Reservation System. This application offers a user-friendly interface for bike rentals, including functionalities for user authentication, bike management, booking, and administrative tasks.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Technologies
 
-## Expanding the ESLint configuration
+-   **Frontend Framework**: React
+-   **Styling**: TailwindCSS
+-   **State Management**: Redux
+-   **Form Handling**: React Hook Form
+-   **Routing**: React Router
+-   **UI Components**: Shadcn UI
+-   **Animations**: Framer Motion
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Features
 
-- Configure the top-level `parserOptions` property like this:
+### User Features
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+1. **Authentication & Profile Management**
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+    - **Sign Up:** Register with name, email, password, phone, and address.
+    - **Login:** Access the system with email and password.
+    - **Profile Page:** View and update user details.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+2. **Bike Management**
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+    - **Bike Listing:** Browse available bikes with filtering options.
+    - **Bike Detail Page:** View detailed information about each bike and book it.
+
+3. **Rental Management**
+    - **Booking Process:** Reserve bikes with start time and payment.
+    - **My Rentals Page:** View and manage rentals with "Paid" and "Unpaid" tabs.
+    - **Pay Button:** Pay for unpaid rentals.
+
+### Admin Features
+
+1. **Admin Profile Management**
+
+    - **Profile Page:** Similar functionalities as user profile management.
+
+2. **Bike Management**
+
+    - **Bike Listing:** View, create, update, and delete bikes.
+    - **Create/Edit:** Add or modify bike details.
+    - **Delete:** Remove bikes with a confirmation dialog.
+
+3. **User Management**
+
+    - **Manage Users:** Delete or promote users to admin roles.
+
+4. **Return Bike**
+    - **Return Process:** Manage bike returns, update rental status, and calculate costs.
+
+## Error Handling
+
+-   **Error Messages**: Displayed via toast notifications for API failures and next to form fields for validation errors.
+-   **No Data Handling**: Friendly messages for empty data sets.
+-   **404 Page**: Custom design for unmatched routes.
+
+## Installation
+
+### Setup
+
+1. **Clone the Repository**
+
+    ```bash
+    git clone https://github.com/md-ali-0/ready-ride-client
+    cd ready-ride-client
+    ```
+
+2. **Install Dependencies**
+    ```
+    npm install
+    ```
+3. **Run the Server**
+    ```
+    npm run build
+    npm run start
+    ```
+
+
+## Usage
+
+**Navigate to the Website:**
+* Open your browser and go to http://localhost:5173 to view the application.
+
+**User Interaction:**
+
+* **Sign Up/Log In:** Access authentication pages from the navbar.
+* **Browse Bikes:** Use the Bike Listing and Bike Detail pages.
+* **Manage Rentals:** Book bikes and manage rentals from the My Rentals page.
+
+**Admin Interaction:**
+
+* **Manage Bikes and Users:** Access admin features through protected routes.
+* **Handle Returns and Coupons:** Manage bike returns and coupon codes as an admin.
+
+## Live Url:
+
+- **Inspiration Sites**:
+  - [ReadyRide](https://www.link.com/)

@@ -1,9 +1,10 @@
 import { IBike } from "./IBike";
+import { IUserData } from "./IUser";
 
 export interface IRental {
     _id: string;
-    userId: string;
-    bikeId: string | IBike[];
+    userId: IUserData;
+    bikeId: IBike;
     startTime: Date;
     returnTime: Date;
     totalCost: number;

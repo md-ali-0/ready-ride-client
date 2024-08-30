@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
+import { IRental } from "@/Interface/IRentals";
 import { TQueryParam, TResponseRedux } from "@/types";
 import { baseApi } from "../../api/baseApi";
 
@@ -19,7 +20,31 @@ const rentalsApi = baseApi.injectEndpoints({
                     params: params,
                 };
             },
-            transformResponse: (response: TResponseRedux<any>) => {
+            transformResponse: (response: TResponseRedux<IRental[]>) => {
+                return {
+                    data: response.data,
+                    meta: response.meta,
+                };
+            },
+            providesTags: ["rentals"],
+        }),
+
+        getRentals: builder.query({
+            query: (args) => {
+                const params = new URLSearchParams();
+                if (args) {
+                    args.forEach((item: TQueryParam) => {
+                        if (item.value !== undefined) {
+                            params.append(item.name, item.value as string);
+                        }
+                    });
+                }
+                return {
+                    url: `/rentals/all`,
+                    params: params,
+                };
+            },
+            transformResponse: (response: TResponseRedux<IRental[]>) => {
                 return {
                     data: response.data,
                     meta: response.meta,
@@ -46,6 +71,15 @@ const rentalsApi = baseApi.injectEndpoints({
             },
             invalidatesTags: ["rentals"],
         }),
+        calculateRentals: builder.mutation({
+            query: (id) => {
+                return {
+                    url: `rentals/${id}/calculate`,
+                    method: "PUT",
+                };
+            },
+            invalidatesTags: ["rentals"],
+        }),
         deleteRentals: builder.mutation({
             query: (id) => {
                 return {
@@ -60,7 +94,9 @@ const rentalsApi = baseApi.injectEndpoints({
 
 export const {
     useGetAllRentalsQuery,
+    useGetRentalsQuery,
     useCreateRentalsMutation,
+    useCalculateRentalsMutation,
     useReturnRentalsMutation,
     useDeleteRentalsMutation,
 } = rentalsApi;

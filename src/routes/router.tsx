@@ -10,6 +10,7 @@ import ManageCoupons from "@/pages/dashboard/coupon-management";
 import CreateBike from "@/pages/dashboard/create-bike";
 import CreateCoupon from "@/pages/dashboard/create-coupons";
 import DashProfile from "@/pages/dashboard/dash-profile";
+import ManageRentals from "@/pages/dashboard/rental-management";
 import ManageUsers from "@/pages/dashboard/user-management";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
             {
                 path: 'create-coupon',
                 element: <CreateCoupon/>
+            },
+            {
+                path: 'rentals',
+                element: <ManageRentals/>
             },
         ]
     },

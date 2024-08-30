@@ -151,13 +151,11 @@ const Bikes: FC = () => {
                                     className="group mx-2 grid grid-cols-12 space-x-5 overflow-hidden rounded-lg border py-8 text-gray-700 dark:text-gray-300 sm:mx-auto"
                                 >
                                     <div className="order-2 col-span-1 mt-4 -ml-14 text-left sm:-order-1 sm:ml-4">
-                                        <div className="group relative h-16 w-16 overflow-hidden rounded-lg">
+                                        <div className="group relative overflow-hidden rounded-lg">
                                             <img
-                                                src={
-                                                    "https://autobike-light.templaza.net/wp-content/uploads/2023/05/kody-goodson-SPBN8LHjaIE-unsplash.jpg"
-                                                }
-                                                alt=""
-                                                className="h-full w-full object-cover"
+                                                src={bike.image || ''}
+                                                alt={bike.name}
+                                                className="h-full w-full"
                                             />
                                         </div>
                                     </div>

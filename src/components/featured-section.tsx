@@ -4,7 +4,16 @@ import { FC } from "react";
 import BikeCard from "./bike-card";
 
 const FeaturedSection: FC = () => {
-    const { data : allBikes} = useGetAllBikesQuery(undefined)
+    const { data: allBikes } = useGetAllBikesQuery([
+        {
+            name: "limit",
+            value: 4,
+        },
+        {
+            name: "isFeatured",
+            value: true,
+        },
+    ]);
 
     return (
         <section className="py-12">
@@ -18,14 +27,9 @@ const FeaturedSection: FC = () => {
                     </p>
                 </div>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                    {
-                        allBikes?.data?.map((bike: IBike) => (
-                            <BikeCard
-                                key={bike._id}
-                                bike={bike}
-                            />
-                        ))
-                    }
+                    {allBikes?.data?.map((bike: IBike) => (
+                        <BikeCard key={bike._id} bike={bike} />
+                    ))}
                     {/* {isLoading
                         ? Array.from({ length: 4 }).map((_, index) => (
                               <SkeletonProductCard key={index} />

@@ -42,7 +42,7 @@ const MyRentals: FC = () => {
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
-    const dispatch = useAppDispatch()
+    const dispatch = useAppDispatch();
 
     const handlePayment = (rental: any) => {
         setSelectedRental(rental);
@@ -50,9 +50,9 @@ const MyRentals: FC = () => {
             amount: 100,
             isBooking: false,
         };
-        dispatch(setRentalData(RentalData))
-        toast.success("Redirecting to Payment Page...",{duration: 1000});
-        setTimeout(()=>navigate('/payment'),1000)
+        dispatch(setRentalData(RentalData));
+        toast.success("Redirecting to Payment Page...", { duration: 1000 });
+        setTimeout(() => navigate("/payment"), 1000);
     };
 
     if (isLoading) {
@@ -101,13 +101,11 @@ const MyRentals: FC = () => {
                                             className="group mx-2 grid grid-cols-12 space-x-5 overflow-hidden rounded-lg border py-8 text-gray-700 dark:text-gray-300 sm:mx-auto"
                                         >
                                             <div className="order-2 col-span-1 mt-4 -ml-14 text-left sm:-order-1 sm:ml-4">
-                                                <div className="group relative h-16 w-16 overflow-hidden rounded-lg">
+                                                <div className="group relative overflow-hidden rounded-lg">
                                                     <img
-                                                        src={
-                                                            "https://autobike-light.templaza.net/wp-content/uploads/2023/05/kody-goodson-SPBN8LHjaIE-unsplash.jpg"
-                                                        }
-                                                        alt=""
-                                                        className="h-full w-full object-cover"
+                                                        src={bike.image || ""}
+                                                        alt={bike.name}
+                                                        className="h-full w-full"
                                                     />
                                                 </div>
                                             </div>
@@ -164,7 +162,14 @@ const MyRentals: FC = () => {
                                                 </div>
                                                 {activeTab !== "paid" && (
                                                     <div className="flex flex-col md:flex-row items-center justify-center gap-3">
-                                                        <Button onClick={() => handlePayment(bike)} className="w-full">
+                                                        <Button
+                                                            onClick={() =>
+                                                                handlePayment(
+                                                                    bike
+                                                                )
+                                                            }
+                                                            className="w-full"
+                                                        >
                                                             Pay Now
                                                         </Button>
                                                     </div>

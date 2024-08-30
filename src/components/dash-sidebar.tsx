@@ -43,59 +43,53 @@ const Sidebar: FC<SidebarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                                     path: "/dashboard",
                                 }}
                             />
-                            <SideBarMenuItem
-                                menu={{
-                                    name: "Mails",
-                                    icon: "Mail",
-                                    path: "/dashboard/all-mails",
-                                }}
-                            />
                             <SidebarSubMenu
                                 menu={{
                                     name: "Bikes",
-                                    icon: "List",
+                                    icon: "Bike",
                                 }}
                                 subMenu={[
                                     {
                                         name: "Create Bike",
-                                        path: "create-bike",
+                                        path: "/dashboard/create-bike",
                                     },
                                     {
                                         name: "All Bikes",
-                                        path: "bikes",
+                                        path: "/dashboard/bikes",
                                     },
                                 ]}
                             ></SidebarSubMenu>
-                            
-                            <SidebarSubMenu
+                            <SideBarMenuItem
                                 menu={{
-                                    name: "Orders",
-                                    icon: "ScanBarcode",
+                                    name: "Rentals",
+                                    icon: "ListMinus",
+                                    path: "/dashboard/rentals",
                                 }}
-                                subMenu={[
-                                    {
-                                        name: "All Orders",
-                                        path: "all-orders",
-                                    },
-                                ]}
-                            ></SidebarSubMenu>
+                            />
+                            <SideBarMenuItem
+                                menu={{
+                                    name: "Coupons",
+                                    icon: "Component",
+                                    path: "/dashboard/coupons",
+                                }}
+                            />
                             <SideBarMenuItem
                                 menu={{
                                     name: "Users",
                                     icon: "Users",
-                                    path: "/dashboard/all-users",
+                                    path: "/dashboard/users",
                                 }}
                             />
-                            <h4 className="text-gray-400 font-semibold text-xs mt-2">
-                                Settings
-                            </h4>
                             <SideBarMenuItem
                                 menu={{
-                                    name: "Settings",
-                                    icon: "Settings",
-                                    path: "/dashboard/settings",
+                                    name: "Profile",
+                                    icon: "UserRoundPen",
+                                    path: "/dashboard/profile",
                                 }}
                             />
+                            {/* <h4 className="text-gray-400 font-semibold text-xs mt-2">
+                                Settings
+                            </h4> */}
                             <SideBarMenuItem
                                 menu={{
                                     name: "Back to Home",

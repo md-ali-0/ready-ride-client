@@ -8,27 +8,27 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-import { IBike } from "@/Interface/IBike";
-import { useDeleteBikeMutation } from "@/redux/features/bikes/bikeApi";
+import { IUserData } from "@/interface/IUser";
+import { useDeleteUserMutation } from "@/redux/features/user/userApi";
 
 import { ErrorResponse } from "@/types";
 import { SerializedError } from "@reduxjs/toolkit";
 import { useEffect } from "react";
 import { toast } from "sonner";
 
-interface DeleteBikeDialogProps {
-    bike: IBike | null;
+interface DeleteUserDialogProps {
+    user: IUserData | null;
     open: boolean;
     onClose: () => void;
 }
 
-const DeleteBikeDialog = ({
-    bike,
+const DeleteUserDialog = ({
+    user,
     open,
     onClose,
-}: DeleteBikeDialogProps) => {
-    const [deleteBike, { isSuccess, isError, error }] =
-        useDeleteBikeMutation();
+}: DeleteUserDialogProps) => {
+    const [deleteUser, { isSuccess, isError, error }] =
+        useDeleteUserMutation();
 
     useEffect(() => {
         if (isError) {
@@ -40,21 +40,21 @@ const DeleteBikeDialog = ({
 
             toast.error(errorMessage);
         } else if (isSuccess) {
-            toast.success("Bike Deleted successfully");
+            toast.success("User Deleted successfully");
         }
     }, [isError, isSuccess, error]);
 
     const handleDelete = async (id: string) => {
-        await deleteBike(id);
+        await deleteUser(id);
     };
     return (
         <AlertDialog open={open} onOpenChange={onClose}>
             <AlertDialogContent>
                 <AlertDialogHeader>
-                    <AlertDialogTitle>Delete Bike</AlertDialogTitle>
+                    <AlertDialogTitle>Delete User</AlertDialogTitle>
                     <AlertDialogDescription>
-                        Are you sure you want to delete the Bike &quot;
-                        {bike?.name}&quot;?
+                        Are you sure you want to delete the User &quot;
+                        {user?.name}&quot;?
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
@@ -62,7 +62,7 @@ const DeleteBikeDialog = ({
                         Cancel
                     </AlertDialogCancel>
                     <AlertDialogAction
-                        onClick={() => handleDelete(bike?._id as string)}
+                        onClick={() => handleDelete(user?._id as string)}
                     >
                         Delete
                     </AlertDialogAction>
@@ -72,4 +72,4 @@ const DeleteBikeDialog = ({
     );
 };
 
-export default DeleteBikeDialog;
+export default DeleteUserDialog;

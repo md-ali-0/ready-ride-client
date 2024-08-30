@@ -3,8 +3,9 @@ import MainLayout from "@/components/layout/main-layout";
 import AboutUs from "@/pages/about-us";
 import BikeDetails from "@/pages/bike-details";
 import ContactUs from "@/pages/contact-us";
-import ManageBikes from "@/pages/dashboard/all-bikes";
+import ManageBikes from "@/pages/dashboard/bike-management";
 import CreateBike from "@/pages/dashboard/create-bike";
+import ManageUsers from "@/pages/dashboard/user-management";
 import Home from "@/pages/home";
 import Login from "@/pages/login";
 import Bikes from "@/pages/manage-bikes";
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
             {
                 path: 'bikes',
                 element: <ManageBikes/>
+            },
+            {
+                path: 'users',
+                element: <ManageUsers/>
             },
         ]
     },

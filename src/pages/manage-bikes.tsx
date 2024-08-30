@@ -61,8 +61,6 @@ const Bikes: FC = () => {
     };
 
     const handleAvailabilityChange = (availability: string) => {
-        console.log(availability);
-
         setSelectedAvailability(availability == "available" ? true : false);
     };
 

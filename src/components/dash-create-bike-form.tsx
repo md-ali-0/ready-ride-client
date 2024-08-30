@@ -95,6 +95,7 @@ export default function CreateBikeForm() {
     }, [isError, isSuccess, error]);
 
     const onSubmit = async (data: CreateBikeValues) => {
+        const creatingToast = toast.loading("Bike Creating ...");
         const bikeData = {
             name: data.name,
             description: data.description,
@@ -106,8 +107,6 @@ export default function CreateBikeForm() {
             isFetured: data.isFeatured,
         };
 
-        console.log(bikeData);
-
         const formData = new FormData();
         if (data.image) {
             formData.append("image", data.image);
@@ -115,6 +114,7 @@ export default function CreateBikeForm() {
         formData.append("data", JSON.stringify(bikeData));
 
         await createBike(formData);
+        toast.dismiss(creatingToast)
         form.reset();
     };
 
@@ -155,6 +155,7 @@ export default function CreateBikeForm() {
                                         onChange={(e) =>
                                             field.onChange(e.target.files?.[0])
                                         }
+                                        required
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -175,6 +176,7 @@ export default function CreateBikeForm() {
                                         type="string"
                                         placeholder="Enter Bike Price Per Hour"
                                         {...field}
+                                        required
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -192,7 +194,8 @@ export default function CreateBikeForm() {
                                         onValueChange={(values) =>
                                             field.onChange(values)
                                         }
-                                        defaultValue="active"
+                                        value={field.value}
+                                        required
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select Brand" />
@@ -226,6 +229,7 @@ export default function CreateBikeForm() {
                                         id="description"
                                         placeholder="Enter Bike description"
                                         {...field}
+                                        required
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -247,6 +251,7 @@ export default function CreateBikeForm() {
                                             field.onChange(values === "1");
                                         }}
                                         defaultValue="0"
+                                        required
                                     >
                                         <SelectTrigger>
                                             <SelectValue placeholder="Select Featured" />
@@ -277,6 +282,7 @@ export default function CreateBikeForm() {
                                         type="number"
                                         placeholder="Enter Bike CC"
                                         {...field}
+                                        required
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -295,6 +301,7 @@ export default function CreateBikeForm() {
                                         type="number"
                                         placeholder="Enter Bike Yar"
                                         {...field}
+                                        required
                                     />
                                 </FormControl>
                                 <FormMessage />
@@ -313,6 +320,7 @@ export default function CreateBikeForm() {
                                         type="text"
                                         placeholder="Enter Bike Model"
                                         {...field}
+                                        required
                                     />
                                 </FormControl>
                                 <FormMessage />

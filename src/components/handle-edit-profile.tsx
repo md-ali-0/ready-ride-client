@@ -64,7 +64,6 @@ const EditProfileDialog = ({ user, open, onClose }: EditProfileDialogProps) => {
 
     const onSubmit = async (data: IUserData) => {
         const loadingToast = toast.loading("Profile is Updating...");
-        console.log(data);
         
         if (user) {
             await updateProfile(data);

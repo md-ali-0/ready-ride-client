@@ -1,6 +1,6 @@
 import * as Icon from "lucide-react";
 import { FC } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 interface MenuItem {
     name: string;
@@ -17,13 +17,13 @@ const SideBarMenuItem: FC<SideBarMenuItemProps> = ({ menu }) => {
     const IconComponent = Icon[icon as keyof typeof Icon] as FC<{
         size?: number;
     }>;
+    const { pathname } = useLocation();
+    
     return (
-        <li className="py-0.5">
+        <li className="py-0.5 ">
             <NavLink
                 to={path}
-                className={({ isActive }) =>
-                    isActive ? "sideLinkActive" : "sideLink"
-                }
+                className={pathname === path ? "sideLinkActive" : "sideLink"}
             >
                 {IconComponent && <IconComponent size={20} />}
                 {name}

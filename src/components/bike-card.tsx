@@ -11,13 +11,13 @@ interface BikeCardProps {
 const BikeCard: FC<BikeCardProps> = ({ bike }) => {
     return (
         <div className="border hover:border-primary transition-all transform duration-500 ease-in-out rounded-xl px-2.5 py-3">
-            <div className="h-48">
+            <div className="h-48 overflow-hidden rounded-md">
                 <img
                     src={bike.image || ""}
                     alt={bike.name}
                     width={400}
                     height={400}
-                    className="rounded-md w-full object-cover"
+                    className="rounded-md h-48 hover:scale-105 transform transition-all duration-300 animate-in ease-in-out w-full object-cover"
                 />
             </div>
             <div className="space-y-1 py-2.5">

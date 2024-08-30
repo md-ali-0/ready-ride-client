@@ -6,7 +6,9 @@ import { IUser } from "@/interface/IUser";
 import { useLoginUserMutation } from "@/redux/features/auth/authApi";
 import { setUser } from "@/redux/features/auth/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
+import { ErrorResponse } from "@/types";
 import verifyToken from "@/utils/verify-token";
+import { SerializedError } from "@reduxjs/toolkit";
 import { Eye, EyeOff } from "lucide-react";
 import { FC, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -25,31 +27,30 @@ const Login: FC = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<FormValues>();
-    const [loginUser, { isSuccess }] = useLoginUserMutation();
+    const [loginUser, { isSuccess, isError, error }] = useLoginUserMutation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const [showPassword, setShowPassword] = useState(false);
 
     useEffect(() => {
-        if (isSuccess) {
+        if (isError) {
+            const errorResponse = error as ErrorResponse | SerializedError;
+            const errorMessage =
+                (errorResponse as ErrorResponse)?.data?.message ||
+                "Something Went Wrong";
+
+            toast.error(errorMessage);
+        } else if (isSuccess) {
             toast.success("User Logged In Successfully");
             navigate("/");
         }
-    }, [isSuccess, navigate]);
+    }, [error, isError, isSuccess, navigate]);
 
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
-        try {
             const res = await loginUser(data).unwrap();
-            console.log(res);
-            
             const user = verifyToken(res?.token) as IUser;
-            console.log(user);
-            
             dispatch(setUser({ user: user, token: res?.token }));
-        } catch (error) {
-            toast.error(error?.data?.message || "Something went wrong");
-        }
     };
 
     const togglePasswordVisibility = () => {

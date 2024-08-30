@@ -6,26 +6,25 @@ import {
     DropdownMenuItem,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { IBike } from "@/Interface/IBike";
-import { useGetAllBikesQuery } from "@/redux/features/bikes/bikeApi";
+import { IUserData } from "@/interface/IUser";
+import { useGetAllUsersQuery } from "@/redux/features/user/userApi";
 import { ColumnDef } from "@tanstack/react-table";
 import { LucideMoreVertical } from "lucide-react";
 import { FC, useEffect, useState } from "react";
 import { toast } from "sonner";
-import DeleteBikeDialog from "./dash-delete-bike-dialog";
-import EditBikeDialog from "./dash-edit-bike-dialog";
+
+import DeleteUserDialog from "./dash-delete-user-dialog";
+import EditUserDialog from "./dash-edit-user-dialog";
 import Loading from "./loading";
 import { Badge } from "./ui/badge";
 
-const ManageBikeTable: FC = () => {
+const ManageUsersTable: FC = () => {
     const [editDialogOpen, setEditDialogOpen] = useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
-    const [bikeToEdit, setbikeToEdit] = useState<IBike | null>(null);
-    const [biketoDelete, setbiketoDelete] = useState<IBike | null>(
-        null
-    );
+    const [userToEdit, setuserToEdit] = useState<IUserData | null>(null);
+    const [usertoDelete, setusertoDelete] = useState<IUserData | null>(null);
 
-    const { data, isError, isLoading, isSuccess, error } = useGetAllBikesQuery(undefined);
+    const { data: users, isError, isLoading, isSuccess, error } = useGetAllUsersQuery(undefined);
 
     useEffect(() => {
         if (isError) {
@@ -33,75 +32,41 @@ const ManageBikeTable: FC = () => {
         }
     }, [isError, isSuccess, error]);
 
-    const handleEditClick = (bike: IBike) => {
-        setbikeToEdit(bike);
+    const handleEditClick = (user: IUserData) => {
+        setuserToEdit(user);
         setEditDialogOpen(true);
     };
 
-    const handleDeleteClick = (bike: IBike) => {
-        setbiketoDelete(bike);
+    const handleDeleteClick = (user: IUserData) => {
+        setusertoDelete(user);
         setDeleteDialogOpen(true);
     };
 
-    const columns: ColumnDef<IBike>[] = [
-        {
-            accessorKey: "image",
-            header: "Image",
-            cell: ({ row }) => {
-                return (
-                    <div className="rounded-md overflow-hidden w-16">
-                        <img
-                            src={row.original.image || ''}
-                            alt={row.original.name}
-                            className="rounded-md transition-all transform ease-in-out duration-200 hover:scale-105"
-                        />
-                    </div>
-                );
-            },
-        },
+    const columns: ColumnDef<IUserData>[] = [
         {
             accessorKey: "name",
             header: "Name",
         },
         {
-            accessorKey: "brand",
-            header: "Brand",
+            accessorKey: "email",
+            header: "Email",
         },
         {
-            accessorKey: "model",
-            header: "Model",
+            accessorKey: "phone",
+            header: "Phone",
         },
         {
-            accessorKey: "year",
-            header: "Year",
+            accessorKey: "address",
+            header: "Address",
         },
         {
-            accessorKey: "cc",
-            header: "CC",
-        },
-        {
-            accessorKey: "isFeatured",
-            header: "Featured",
+            accessorKey: "role",
+            header: "Role",
             cell: ({ row }) => {
                 return (
-                    <Badge className="capitalize">
-                        {row.original.isFeatured ? "On" : "Off"}
+                    <Badge className="capitalize" variant={'outline'}>
+                        {row.original.role}
                     </Badge>
-                );
-            },
-        },
-        {
-            accessorKey: "pricePerHour",
-            header: "Price/Hour",
-        },
-        {
-            accessorKey: "isAvailable",
-            header: "Availability",
-            cell: ({ row }) => {
-                return (
-                    <>
-                        {row.original.isAvailable ? <Badge className="capitalize" variant={'outline'}>Yes</Badge> : <Badge className="capitalize" variant={'outline'}>No</Badge>}
-                    </>
                 );
             },
         },
@@ -140,14 +105,14 @@ const ManageBikeTable: FC = () => {
 
     return (
         <>
-            <DataTable columns={columns} data={data?.data || []} />
-            <EditBikeDialog
-                bike={bikeToEdit}
+            <DataTable columns={columns} data={users || []} />
+            <EditUserDialog
+                user={userToEdit}
                 open={editDialogOpen}
                 onClose={() => setEditDialogOpen(false)}
             />
-            <DeleteBikeDialog
-                bike={biketoDelete}
+            <DeleteUserDialog
+                user={usertoDelete}
                 open={deleteDialogOpen}
                 onClose={() => setDeleteDialogOpen(false)}
             />
@@ -155,4 +120,4 @@ const ManageBikeTable: FC = () => {
     );
 };
 
-export default ManageBikeTable;
+export default ManageUsersTable;

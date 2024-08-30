@@ -13,7 +13,6 @@ export interface IUserData {
     phone: string;
     avatar?: string;
     address: string;
-    isAvailable: boolean;
     role: "admin" | "user";
     createdAt: Date;
     updatedAt: Date;

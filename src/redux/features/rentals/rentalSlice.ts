@@ -6,13 +6,17 @@ export interface InitialStateProps {
     startTime?: string | null;
     amount?: number | null
     isBooking?: boolean | null
+    totalCost?: number | null
+    dicountCost?: number | null
 }
 
 const initialState: InitialStateProps = {
     bikeId: null,
     startTime: null,
     amount: 0,
-    isBooking: false
+    isBooking: false,
+    totalCost: null,
+    dicountCost: null
 };
 
 export const rentalSlice = createSlice({

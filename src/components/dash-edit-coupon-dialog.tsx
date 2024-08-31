@@ -43,6 +43,7 @@ const EditCouponDialog = ({ coupon, open, onClose }: EditCouponDialogProps) => {
             code: "",
             discountValue: 0,
             isActive: true,
+            color: "",
             expirationDate: new Date().toISOString().split("T")[0],
         },
     });
@@ -151,7 +152,31 @@ const EditCouponDialog = ({ coupon, open, onClose }: EditCouponDialogProps) => {
                                             id="expirationDate"
                                             type="date"
                                             {...field}
-                                            value={new Date(field.value).toISOString().split("T")[0]}
+                                            value={
+                                                new Date(field.value)
+                                                    .toISOString()
+                                                    .split("T")[0]
+                                            }
+                                        />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="color"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel htmlFor="color">
+                                        Coupon Color
+                                    </FormLabel>
+                                    <FormControl>
+                                        <Input
+                                            id="color"
+                                            type="color"
+                                            {...field}
+                                            value={field.value as string}
                                         />
                                     </FormControl>
                                     <FormMessage />

@@ -1,35 +1,15 @@
 import couponImage from "@/assets/image/banner/coupon.png";
 import { useGetAllCouponsQuery } from "@/redux/features/coupon/couponApi";
-import { setcouponData } from "@/redux/features/coupon/couponSlice";
-import { useAppDispatch } from "@/redux/hooks";
-import { useState } from "react";
-import { Button } from "./ui/button";
+import SpinWheel from "./spin-wheeler";
 
 const CouponSection = () => {
-    const [isCopied, setIsCopied] = useState(false);
-    const dispatch = useAppDispatch();
-    const { data } = useGetAllCouponsQuery(undefined);
-    const cuponCopy = () => {
-        navigator.clipboard.writeText("Bike2024");
-        setIsCopied(true);
-        setTimeout(() => {
-            setIsCopied(false);
-        }, 1000);
-        console.log(data);
-        const cuponCode = {
-            code: "Bike25",
-            discountValue: 25,
-            isActive: true,
-            expirationDate: null,
-        };
-        dispatch(setcouponData(cuponCode));
-    };
+    const { data: allCoupons } = useGetAllCouponsQuery(undefined);
 
     return (
         <div className="container mx-auto">
             <div className="relative sm:h-[390px] overflow-hidden bg-primary rounded-2xl">
                 <div className="flex flex-col-reverse sm:flex-row justify-between items-center px-5 sm:px-10 py-5 md:px-20">
-                    <div className="text-white text-center sm:text-left">
+                    {/* <div className="text-white text-center sm:text-left">
                         <div className="text-xl sm:text-3xl font-medium sm:font-bold mb-4">
                             Special Offer!
                         </div>
@@ -59,7 +39,8 @@ const CouponSection = () => {
                             </p>
                             <p>Terms and conditions apply.</p>
                         </div>
-                    </div>
+                    </div> */}
+                    <SpinWheel coupons={allCoupons?.data || []}/>
                     <div className="flex items-center justify-end w-full sm:w-1/2">
                         <img src={couponImage} className="sm:h-[350px] w-fit" />
                     </div>

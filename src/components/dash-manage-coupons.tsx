@@ -21,11 +21,10 @@ const ManageCouponTable: FC = () => {
     const [editDialogOpen, setEditDialogOpen] = useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [couponToEdit, setcouponToEdit] = useState<ICoupon | null>(null);
-    const [coupontoDelete, setcoupontoDelete] = useState<ICoupon | null>(
-        null
-    );
+    const [coupontoDelete, setcoupontoDelete] = useState<ICoupon | null>(null);
 
-    const { data, isError, isLoading, isSuccess, error } = useGetAllCouponsQuery(undefined);
+    const { data, isError, isLoading, isSuccess, error } =
+        useGetAllCouponsQuery(undefined);
 
     useEffect(() => {
         if (isError) {
@@ -52,7 +51,6 @@ const ManageCouponTable: FC = () => {
             accessorKey: "discountValue",
             header: "Discount Value",
         },
-
         {
             accessorKey: "isActive",
             header: "Status",
@@ -62,6 +60,13 @@ const ManageCouponTable: FC = () => {
                         {row.original.isActive ? "On" : "Off"}
                     </Badge>
                 );
+            },
+        },
+        {
+            accessorKey: "color",
+            header: "Color",
+            cell: ({ row }) => {
+                return <div className="p-2 rounded-full" style={{ backgroundColor: row.original.color}}></div>;
             },
         },
         {

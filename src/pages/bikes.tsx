@@ -73,7 +73,7 @@ const Bikes: FC = () => {
         <div className="container py-12 mx-auto">
             <div className="border rounded-lg px-2.5 py-5 md:px-6">
                 <div className="flex flex-col sm:flex-row justify-between items-center py-3 gap-3.5">
-                    <h2 className="text-2xl font-semibold">Manage Bikes</h2>
+                    <h2 className="text-2xl font-semibold">All Bikes</h2>
                     <div className="flex flex-wrap justify-center items-center gap-3">
                         <div>
                             <Input

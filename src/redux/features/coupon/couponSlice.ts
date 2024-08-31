@@ -3,13 +3,15 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface InitialStateProps {
     code: string | null;
+    color: string | null
     discountValue: number | null
     isActive: boolean | null
-    expirationDate: Date | null
+    expirationDate: string| Date | null
 }
 
 const initialState: InitialStateProps = {
     code: null,
+    color: null,
     discountValue: null,
     isActive: null,
     expirationDate: null

@@ -79,8 +79,6 @@ const EditUserDialog = ({ user, open, onClose }: EditUserDialogProps) => {
 
     const onSubmit = async (data: IUserData) => {
         const loadingToast = toast.loading("User is Updating...");
-        console.log(data);
-        
         if (user) {
             await updateUser({ data: data, id: user._id });
         }

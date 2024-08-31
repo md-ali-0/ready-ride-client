@@ -104,11 +104,8 @@ const ManageRentalsTable: FC = () => {
                         setSelectedRental(row.original._id);
                         setDialogOpen(true);
                     }}
-                    disabled={row.original.totalCost > 0}
                 >
-                    {row.original.totalCost > 0
-                        ? "Caluclated"
-                        : "Calculate Cost"}
+                    Calculate Cost
                 </Button>
             ),
         },

@@ -31,6 +31,7 @@ export default function CreateCouponForm() {
             code: "",
             discountValue: 0,
             isActive: true,
+            color: "",
             expirationDate: new Date().toISOString().split("T")[0],
         },
     });
@@ -114,12 +115,32 @@ export default function CreateCouponForm() {
                         render={({ field }) => (
                             <FormItem>
                                 <FormLabel htmlFor="expirationDate">
-                                    Coupon Expiration Date
+                                Coupon Expiration Date
                                 </FormLabel>
                                 <FormControl>
                                     <Input
                                         id="expirationDate"
                                         type="date"
+                                        {...field}
+                                        value={field.value as string}
+                                    />
+                                </FormControl>
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="color"
+                        render={({ field }) => (
+                            <FormItem>
+                                <FormLabel htmlFor="color">
+                                    Coupon Color
+                                </FormLabel>
+                                <FormControl>
+                                    <Input
+                                        id="color"
+                                        type="color"
                                         {...field}
                                         value={field.value as string}
                                     />

@@ -20,7 +20,7 @@ const couponApi = baseApi.injectEndpoints({
                     params: params,
                 };
             },
-            transformResponse: (response: TResponseRedux<ICoupon[]>) => {
+            transformResponse: (response: TResponseRedux<ICoupon[] | []>) => {
                 return {
                     data: response.data,
                     meta: response.meta,

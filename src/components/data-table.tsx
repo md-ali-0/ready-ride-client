@@ -20,6 +20,7 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
+import { TMeta } from "@/types";
 import { useState } from "react";
 import { DataTableViewOptions } from "./columns-toggle";
 import { DataTablePagination } from "./data-table-pagination";
@@ -27,11 +28,17 @@ import { DataTablePagination } from "./data-table-pagination";
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[];
     data: TData[];
+    meta: TMeta;
+    onPageChange: (page: number) => void;
+    onPageSizeChange: (pageSize: number) => void;
 }
 
 export function DataTable<TData, TValue>({
     columns,
     data,
+    meta,
+    onPageChange,
+    onPageSizeChange,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -130,7 +137,12 @@ export function DataTable<TData, TValue>({
             </div>
 
             <div className="py-4">
-                <DataTablePagination table={table} />
+                <DataTablePagination
+                    table={table}
+                    meta={meta}
+                    onPageChange={onPageChange}
+                    onPageSizeChange={onPageSizeChange}
+                />
             </div>
         </div>
     );

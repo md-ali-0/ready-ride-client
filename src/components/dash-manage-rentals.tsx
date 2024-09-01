@@ -1,9 +1,8 @@
 import { DataTable } from "@/components/data-table";
 import { Button } from "@/components/ui/button";
 import { IRental } from "@/Interface/IRentals";
-import {
-    useGetRentalsQuery
-} from "@/redux/features/rentals/rentalApi";
+import { useGetRentalsQuery } from "@/redux/features/rentals/rentalApi";
+import { TMeta } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { FC, useState } from "react";
 import ConfirmCostDialog from "./dash-confirm-cost-dialog";
@@ -11,10 +10,23 @@ import Loading from "./loading";
 import { Badge } from "./ui/badge";
 
 const ManageRentalsTable: FC = () => {
-    const { data, isLoading } = useGetRentalsQuery(undefined);
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(10);
+
+    const { data, isLoading } = useGetRentalsQuery([
+        {
+            name: "limit",
+            value: limit,
+        },
+        {
+            name: "page",
+            value: page,
+        },
+    ]);
 
     const [dialogOpen, setDialogOpen] = useState(false);
     const [selectedRental, setSelectedRental] = useState<string | null>(null);
+    console.log(data?.meta);
 
     const columns: ColumnDef<IRental>[] = [
         {
@@ -117,7 +129,13 @@ const ManageRentalsTable: FC = () => {
 
     return (
         <>
-            <DataTable columns={columns} data={data?.data || []} />
+            <DataTable
+                columns={columns}
+                data={data?.data || []}
+                onPageChange={setPage}
+                onPageSizeChange={setLimit}
+                meta={data?.meta as TMeta}
+            />
             <ConfirmCostDialog
                 id={selectedRental}
                 open={dialogOpen}

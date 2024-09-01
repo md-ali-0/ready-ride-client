@@ -1,4 +1,3 @@
-
 import { IUserData } from "@/Interface/IUserData";
 import { TResponseRedux } from "@/types";
 import { baseApi } from "../../api/baseApi";
@@ -12,8 +11,12 @@ const userApi = baseApi.injectEndpoints({
                 };
             },
             transformResponse: (response: TResponseRedux<IUserData[]>) => {
-                return response.data;
+                return {
+                    data: response.data,
+                    meta: response.meta,
+                };
             },
+
             providesTags: ["users"],
         }),
         updateUser: builder.mutation({

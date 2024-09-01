@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { IBike } from "@/Interface/IBike";
 import { useGetAllBikesQuery } from "@/redux/features/bikes/bikeApi";
+import { TMeta } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { LucideMoreVertical } from "lucide-react";
 import { FC, useEffect, useState } from "react";
@@ -18,14 +19,25 @@ import Loading from "./loading";
 import { Badge } from "./ui/badge";
 
 const ManageBikeTable: FC = () => {
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(10);
+
     const [editDialogOpen, setEditDialogOpen] = useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [bikeToEdit, setbikeToEdit] = useState<IBike | null>(null);
-    const [biketoDelete, setbiketoDelete] = useState<IBike | null>(
-        null
-    );
+    const [biketoDelete, setbiketoDelete] = useState<IBike | null>(null);
 
-    const { data, isError, isLoading, isSuccess, error } = useGetAllBikesQuery(undefined);
+    const { data, isError, isLoading, isSuccess, error } =
+        useGetAllBikesQuery([
+        {
+            name: "limit",
+            value: limit,
+        },
+        {
+            name: "page",
+            value: page,
+        },
+    ]);
 
     useEffect(() => {
         if (isError) {
@@ -51,7 +63,7 @@ const ManageBikeTable: FC = () => {
                 return (
                     <div className="rounded-md overflow-hidden w-16">
                         <img
-                            src={row.original.image || ''}
+                            src={row.original.image || ""}
                             alt={row.original.name}
                             className="rounded-md transition-all transform ease-in-out duration-200 hover:scale-105"
                         />
@@ -100,7 +112,15 @@ const ManageBikeTable: FC = () => {
             cell: ({ row }) => {
                 return (
                     <>
-                        {row.original.isAvailable ? <Badge className="capitalize" variant={'outline'}>Yes</Badge> : <Badge className="capitalize" variant={'outline'}>No</Badge>}
+                        {row.original.isAvailable ? (
+                            <Badge className="capitalize" variant={"outline"}>
+                                Yes
+                            </Badge>
+                        ) : (
+                            <Badge className="capitalize" variant={"outline"}>
+                                No
+                            </Badge>
+                        )}
                     </>
                 );
             },
@@ -140,7 +160,13 @@ const ManageBikeTable: FC = () => {
 
     return (
         <>
-            <DataTable columns={columns} data={data?.data || []} />
+            <DataTable
+                columns={columns}
+                data={data?.data || []}
+                onPageChange={setPage}
+                onPageSizeChange={setLimit}
+                meta={data?.meta as TMeta}
+            />
             <EditBikeDialog
                 bike={bikeToEdit}
                 open={editDialogOpen}

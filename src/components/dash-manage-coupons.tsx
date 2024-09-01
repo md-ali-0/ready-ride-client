@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ICoupon } from "@/Interface/ICoupon";
 import { useGetAllCouponsQuery } from "@/redux/features/coupon/couponApi";
+import { TMeta } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { LucideMoreVertical } from "lucide-react";
 import { FC, useEffect, useState } from "react";
@@ -18,13 +19,25 @@ import Loading from "./loading";
 import { Badge } from "./ui/badge";
 
 const ManageCouponTable: FC = () => {
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(10);
+
     const [editDialogOpen, setEditDialogOpen] = useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [couponToEdit, setcouponToEdit] = useState<ICoupon | null>(null);
     const [coupontoDelete, setcoupontoDelete] = useState<ICoupon | null>(null);
 
     const { data, isError, isLoading, isSuccess, error } =
-        useGetAllCouponsQuery(undefined);
+        useGetAllCouponsQuery([
+            {
+                name: "limit",
+                value: limit,
+            },
+            {
+                name: "page",
+                value: page,
+            },
+        ]);
 
     useEffect(() => {
         if (isError) {
@@ -66,7 +79,12 @@ const ManageCouponTable: FC = () => {
             accessorKey: "color",
             header: "Color",
             cell: ({ row }) => {
-                return <div className="p-2 rounded-full" style={{ backgroundColor: row.original.color}}></div>;
+                return (
+                    <div
+                        className="p-2 rounded-full"
+                        style={{ backgroundColor: row.original.color }}
+                    ></div>
+                );
             },
         },
         {
@@ -122,7 +140,13 @@ const ManageCouponTable: FC = () => {
 
     return (
         <>
-            <DataTable columns={columns} data={data?.data || []} />
+            <DataTable
+                columns={columns}
+                data={data?.data || []}
+                onPageChange={setPage}
+                onPageSizeChange={setLimit}
+                meta={data?.meta as TMeta}
+            />
             <EditCouponDialog
                 coupon={couponToEdit}
                 open={editDialogOpen}

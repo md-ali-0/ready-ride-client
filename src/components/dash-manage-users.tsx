@@ -14,18 +14,37 @@ import { FC, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { IUserData } from "@/Interface/IUserData";
+import { TMeta } from "@/types";
 import DeleteUserDialog from "./dash-delete-user-dialog";
 import EditUserDialog from "./dash-edit-user-dialog";
 import Loading from "./loading";
 import { Badge } from "./ui/badge";
 
 const ManageUsersTable: FC = () => {
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(10);
+
     const [editDialogOpen, setEditDialogOpen] = useState(false);
     const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
     const [userToEdit, setuserToEdit] = useState<IUserData | null>(null);
     const [usertoDelete, setusertoDelete] = useState<IUserData | null>(null);
 
-    const { data: users, isError, isLoading, isSuccess, error } = useGetAllUsersQuery(undefined);
+    const {
+        data,
+        isError,
+        isLoading,
+        isSuccess,
+        error,
+    } = useGetAllUsersQuery([
+        {
+            name: "limit",
+            value: limit,
+        },
+        {
+            name: "page",
+            value: page,
+        },
+    ]);
 
     useEffect(() => {
         if (isError) {
@@ -65,7 +84,7 @@ const ManageUsersTable: FC = () => {
             header: "Role",
             cell: ({ row }) => {
                 return (
-                    <Badge className="capitalize" variant={'outline'}>
+                    <Badge className="capitalize" variant={"outline"}>
                         {row.original.role}
                     </Badge>
                 );
@@ -106,7 +125,13 @@ const ManageUsersTable: FC = () => {
 
     return (
         <>
-            <DataTable columns={columns} data={users || []} />
+            <DataTable
+                columns={columns}
+                data={data?.data || []}
+                onPageChange={setPage}
+                onPageSizeChange={setLimit}
+                meta={data?.meta as TMeta}
+            />
             <EditUserDialog
                 user={userToEdit}
                 open={editDialogOpen}

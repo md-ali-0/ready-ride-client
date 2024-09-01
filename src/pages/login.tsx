@@ -27,7 +27,7 @@ const Login: FC = () => {
         handleSubmit,
         formState: { errors },
     } = useForm<FormValues>();
-    const [loginUser, { isSuccess, isError, error }] = useLoginUserMutation();
+    const [loginUser, { isSuccess, isError, isLoading, error }] = useLoginUserMutation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const location = useLocation();
@@ -152,8 +152,8 @@ const Login: FC = () => {
                             </div>
                         </div>
                         <div>
-                            <Button type="submit" className="w-full">
-                                Sign in
+                            <Button type="submit" className="w-full" disabled={isLoading}>
+                                {isLoading ? 'Processing ... ' : 'Sign in'}
                             </Button>
                         </div>
                     </form>

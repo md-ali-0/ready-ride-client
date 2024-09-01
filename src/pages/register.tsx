@@ -26,7 +26,7 @@ const Register: FC = () => {
         formState: { errors },
     } = useForm<FormValues>();
 
-    const [createUser, { isSuccess, isError, error }] = useSignUpUserMutation();
+    const [createUser, { isSuccess, isLoading, isError, error }] = useSignUpUserMutation();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -195,8 +195,8 @@ const Register: FC = () => {
                             )}
                         </div>
                         <div>
-                            <Button type="submit" className="w-full">
-                                Register
+                            <Button type="submit" className="w-full" disabled={isLoading}>
+                                {isLoading ? 'Processing ... ' : 'Sign Up'}
                             </Button>
                         </div>
                     </form>

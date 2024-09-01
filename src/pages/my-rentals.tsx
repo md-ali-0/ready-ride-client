@@ -4,7 +4,6 @@ import Loading from "@/components/loading";
 import Pagination from "@/components/pagination";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UserSidebar from "@/components/user-sidebar";
 import { IRental } from "@/Interface/IRentals";
 import { useGetAllRentalsQuery } from "@/redux/features/rentals/rentalApi";
@@ -64,22 +63,10 @@ const MyRentals: FC = () => {
                             </h2>
                         </div>
                         <hr className="py-2" />
-                        <Tabs defaultValue="unpaid" className="w-[400px]">
-                            <TabsList className="grid w-full grid-cols-2">
-                                <TabsTrigger
-                                    value="unpaid"
-                                    onClick={() => setActiveTab("unpaid")}
-                                >
-                                    Unpaid
-                                </TabsTrigger>
-                                <TabsTrigger
-                                    value="paid"
-                                    onClick={() => setActiveTab("paid")}
-                                >
-                                    Paid
-                                </TabsTrigger>
-                            </TabsList>
-                        </Tabs>
+                        <div className="flex gap-2">
+                            <Button size={'lg'} variant={activeTab === 'unpaid' ? "default" : "outline"} onClick={() => setActiveTab("unpaid")}>UnPaid</Button>
+                            <Button size={'lg'} variant={activeTab === 'paid' ? "default" : "outline"} onClick={() => setActiveTab("paid")}>Paid</Button>
+                        </div>
                         <div className="overflow-x-auto mt-5">
                             <table className="min-w-full divide-y">
                                 <thead className="bg-zinc-100 dark:bg-zinc-900">

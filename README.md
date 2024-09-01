@@ -65,17 +65,17 @@ The Bike Rental Service Website is a frontend application designed to integrate 
 
 1. **Clone the Repository**
 
-    ```bash
+    ```sh
     git clone https://github.com/md-ali-0/ready-ride-client
     cd ready-ride-client
     ```
 
 2. **Install Dependencies**
-    ```
+    ```sh
     npm install
     ```
 3. **Run the Server**
-    ```
+    ```sh
     npm run build
     npm run start
     ```
@@ -97,7 +97,24 @@ The Bike Rental Service Website is a frontend application designed to integrate 
 * **Manage Bikes and Users:** Access admin features through protected routes.
 * **Handle Returns and Coupons:** Manage bike returns and coupon codes as an admin.
 
+## Credential Details
+
+### Admin Credential:
+
+```bash
+Email: admin@gmail.com
+Password: 123456
+```
+
+### User Credential:
+
+```bash
+Email: user@gmail.com
+Password: 123456
+```
+
 ## Live Url:
 
-- **Inspiration Sites**:
-  - [ReadyRide](https://www.link.com/)
+- **Link**:
+  - [ReadyRide -Client ](https://ready-ride.vercel.app)
+  - [ReadyRide - Server](https://ready-ride-server.vercel.app)

@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useSignUpUserMutation } from "@/redux/features/auth/authApi";
+import { ErrorResponse } from "@/types";
+import { SerializedError } from "@reduxjs/toolkit";
 import { FC, useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -24,15 +26,22 @@ const Register: FC = () => {
         formState: { errors },
     } = useForm<FormValues>();
 
-    const [createUser, { isSuccess }] = useSignUpUserMutation();
+    const [createUser, { isSuccess, isError, error }] = useSignUpUserMutation();
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (isSuccess) {
-            toast.success("User Created Successfully");
-            navigate("/login");
+        if (isError) {
+            const errorResponse = error as ErrorResponse | SerializedError;
+            const errorMessage =
+                (errorResponse as ErrorResponse)?.data?.message ||
+                "Something Went Wrong";
+
+            toast.error(errorMessage);
+        } else if (isSuccess) {
+            toast.success("User Registration In Successfully");
+            navigate('/login');
         }
-    }, [isSuccess, navigate]);
+    }, [error, isError, isSuccess, navigate]);
 
     const onSubmit: SubmitHandler<FormValues> = (data) => {
         createUser(data);

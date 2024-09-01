@@ -4,8 +4,7 @@ import {
     AlertDialog,
     AlertDialogAction,
     AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogTrigger,
+    AlertDialogDescription
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -275,10 +274,7 @@ const PaymentForm: FC = () => {
                 open={isPaymentSuccessful}
                 onOpenChange={setIsPaymentSuccessful}
             >
-                <AlertDialogTrigger asChild>
-                    <Button className="hidden">Trigger</Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
+                <AlertDialogContent className="max-w-96">
                     <AlertDialogDescription>
                         Payment was successful! You will be redirected to your
                         rentals page.

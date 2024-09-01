@@ -9,8 +9,10 @@ const WhyChooseUs: FC = () => {
                     <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
                         Why Choose Us
                     </h2>
-                    <p className="text-muted-foreground">
-                        Check out our latest and greatest Bikes.
+                    <p className="text-muted-foreground text-center max-w-96">
+                        Discover why we're the top choice for bike enthusiasts.
+                        From our cutting-edge models to unmatched customer
+                        service, we offer the perfect ride for everyone.
                     </p>
                 </div>
                 <div className="grid gap-4 row-gap-5 sm:grid-cols-2 lg:grid-cols-4">

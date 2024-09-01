@@ -1,10 +1,31 @@
-import { Facebook, Instagram, Mail, MapPin, Phone, Twitter } from "lucide-react";
-import { FC } from "react";
+import {
+    Facebook,
+    Instagram,
+    Mail,
+    MapPin,
+    Phone,
+    Twitter,
+} from "lucide-react";
+import { FC, FormEvent, useState } from "react";
+import { toast } from "sonner";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
 const ContactUsSection: FC = () => {
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log("Sending message:", { name, email, message });
+        setName("");
+        setEmail("");
+        setMessage("");
+        toast.success("Thanks for contacting us.");
+    };
+
     return (
         <div className="py-12">
             <div className="container mx-auto px-4 md:px-6">
@@ -12,8 +33,9 @@ const ContactUsSection: FC = () => {
                     <h2 className="text-2xl font-bold tracking-tight md:text-3xl">
                         Contact Us
                     </h2>
-                    <p className="text-muted-foreground">
-                        Check out our latest and greatest Bikes.
+                    <p className="text-muted-foreground text-center max-w-96">
+                        Questions? Comments? We welcome your feedback and
+                        encourage you to contact us by phone, email, or post.
                     </p>
                 </div>
                 <div className="flex flex-col lg:flex-row justify-between items-start gap-10">
@@ -58,7 +80,7 @@ const ContactUsSection: FC = () => {
 
                     {/* Get in Touch Section */}
                     <div className="w-full lg:w-1/2">
-                        <form className="space-y-4">
+                        <form className="space-y-4" onSubmit={handleSubmit}>
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                                 <div>
                                     <label

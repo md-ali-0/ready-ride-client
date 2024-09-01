@@ -49,7 +49,7 @@ const Testimonial: FC = () => {
                         Testimonial
                     </h2>
                     <p className="text-muted-foreground">
-                        What our happy user says!
+                        What Clients Say about Us!
                     </p>
                 </div>
                 {/*Slider wrapper*/}
@@ -61,7 +61,7 @@ const Testimonial: FC = () => {
                     autoplay={{
                         delay: 2500,
                         disableOnInteraction: false,
-                      }}
+                    }}
                     breakpoints={{
                         640: {
                             slidesPerView: 1,

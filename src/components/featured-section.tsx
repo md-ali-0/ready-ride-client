@@ -23,7 +23,7 @@ const FeaturedSection: FC = () => {
                         Featured Bikes
                     </h2>
                     <p className="text-muted-foreground">
-                        Check out our latest and greatest Bikes.
+                    Which bike is the best for you?
                     </p>
                 </div>
                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">

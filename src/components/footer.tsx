@@ -1,94 +1,125 @@
 import logoDark from "@/assets/image/logo/logo-dark.png";
-import logo from "@/assets/image/logo/logo.svg";
 import { LucideFacebook, LucideInstagram, LucideTwitter } from "lucide-react";
-import { FC } from "react";
 import { Link } from "react-router-dom";
-import { useTheme } from "./theme-provider";
 
-const Footer: FC = () => {
-    const { theme } = useTheme();
+const Footer = () => {
+
     return (
-        <footer className="bg-white dark:bg-gray-900">
-            <div className="container px-4 py-8 mx-auto">
-                <div className="flex flex-col items-center text-center">
+        <footer className="bg-gradient-to-r from-slate-950 via-slate-900 to-slate-950 text-white py-8">
+            <div className="container mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
                     <Link to={"/"}>
-                        {theme == "dark" || theme == "system" ? (
-                            <img src={logoDark} alt="logo" className="w-24" />
-                        ) : (
-                            <img src={logo} alt="logo" className="w-24" />
-                        )}
+                        <img src={logoDark} alt="logo" className="w-24" />
                     </Link>
-                    <div className="flex flex-wrap justify-center mt-6 -mx-4">
-                        <Link
-                            to="#"
-                            className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
-                            aria-label="Reddit"
-                        >
-                            {" "}
-                            Home{" "}
-                        </Link>
-                        <Link
-                            to="#"
-                            className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
-                            aria-label="Reddit"
-                        >
-                            {" "}
-                            About{" "}
-                        </Link>
-                        <Link
-                            to="#"
-                            className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
-                            aria-label="Reddit"
-                        >
-                            {" "}
-                            Teams{" "}
-                        </Link>
-                        <Link
-                            to="#"
-                            className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
-                            aria-label="Reddit"
-                        >
-                            {" "}
-                            Privacy{" "}
-                        </Link>
-                        <Link
-                            to="#"
-                            className="mx-4 text-sm text-gray-600 transition-colors duration-300 hover:text-blue-500 dark:text-gray-300 dark:hover:text-blue-400"
-                            aria-label="Reddit"
-                        >
-                            {" "}
-                            Cookies{" "}
-                        </Link>
+                    <p className="mt-4 text-gray-300">
+                        At ReadyRide our mission is to empower individuals and
+                        businesses with cutting-edge technology solutions that
+                        drive growth, innovation, and success.
+                    </p>
+                    <div className="mt-5 flex space-x-4">
+                        <div className="border border-gray-700 rounded-full p-2">
+                            <LucideFacebook size={18} />
+                        </div>
+                        <div className="border border-gray-700 rounded-full p-2">
+                            <LucideTwitter size={18} />
+                        </div>
+                        <div className="border border-gray-700 rounded-full p-2">
+                            <LucideInstagram size={18} />
+                        </div>
                     </div>
                 </div>
-                <hr className="my-6 border-gray-200 md:my-10 dark:border-gray-700" />
-                <div className="flex flex-col items-center sm:flex-row sm:justify-between">
-                    <p className="text-sm text-gray-500 dark:text-gray-300">
-                        © Copyright {new Date().getFullYear()}. All Rights Reserved.
-                    </p>
-                    <div className="flex -mx-2">
-                        <Link
-                            to="#"
-                            className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-                            aria-label="Facebook"
-                        >
-                           <LucideFacebook size={20}/>
-                        </Link>
-                        <Link
-                            to="#"
-                            className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-                            aria-label="Facebook"
-                        >
-                           <LucideTwitter size={20}/>
-                        </Link>
-                        <Link
-                            to="#"
-                            className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
-                            aria-label="Github"
-                        >
-                            <LucideInstagram size={20}/>
-                        </Link>
-                    </div>
+                <div></div>
+                <div>
+                    <h3 className="font-semibold">PRODUCTS</h3>
+                    <ul className="mt-4 space-y-2">
+                        <li>
+                            <Link
+                                to={"/bikes"}
+                                className="text-gray-400 hover:text-white"
+                            >
+                                All Bikes
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to={"/my-rentals"}
+                                className="text-gray-400 hover:text-white"
+                            >
+                                My Rentals
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 className="font-semibold">IMPORTANT LINKS</h3>
+                    <ul className="mt-4 space-y-2">
+                        <li>
+                            <Link
+                                to={"/"}
+                                className="text-gray-400 hover:text-white"
+                            >
+                                Home
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to={"/about-us"}
+                                className="text-gray-400 hover:text-white"
+                            >
+                                About Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to={"/contact-us"}
+                                className="text-gray-400 hover:text-white"
+                            >
+                                Contact Us
+                            </Link>
+                        </li>
+                    </ul>
+                </div>
+                {/* <div>
+                    <h3 className="font-semibold">COMPANY</h3>
+                    <ul className="mt-4 space-y-2">
+                        <li>
+                            <Link
+                                to={'/'}
+                                className="text-gray-400 hover:text-white"
+                            >
+                                About Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to={'/'}
+                                className="text-gray-400 hover:text-white"
+                            >
+                                Jobs
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to={'/'}
+                                className="text-gray-400 hover:text-white"
+                            >
+                                Press
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to={'/'}
+                                className="text-gray-400 hover:text-white"
+                            >
+                                Contact Us
+                            </Link>
+                        </li>
+                    </ul>
+                </div> */}
+            </div>
+            <div className="container mx-auto">
+                <div className="border-t border-slate-800 text-center text-gray-200 mt-5 pt-6">
+                    © {new Date().getFullYear()} ReadyRide. All Rights Reserved.
                 </div>
             </div>
         </footer>

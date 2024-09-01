@@ -11,7 +11,7 @@ import { SerializedError } from "@reduxjs/toolkit";
 import { Eye, EyeOff } from "lucide-react";
 import { FC, useEffect, useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { IUser } from "../Interface/IUser";
 
@@ -30,6 +30,8 @@ const Login: FC = () => {
     const [loginUser, { isSuccess, isError, error }] = useLoginUserMutation();
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
+    const location = useLocation();
+    const from = location?.state?.from?.pathname || "/";
 
     const [showPassword, setShowPassword] = useState(false);
 
@@ -43,9 +45,9 @@ const Login: FC = () => {
             toast.error(errorMessage);
         } else if (isSuccess) {
             toast.success("User Logged In Successfully");
-            navigate("/");
+            navigate(from);
         }
-    }, [error, isError, isSuccess, navigate]);
+    }, [error, from, isError, isSuccess, navigate]);
 
     const onSubmit: SubmitHandler<FormValues> = async (data) => {
             const res = await loginUser(data).unwrap();

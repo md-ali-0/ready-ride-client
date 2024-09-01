@@ -117,7 +117,7 @@ const DashNavbar: FC<DashNavbarProps> = ({ sidebarOpen, setSidebarOpen }) => {
                             </Link>
                             <div
                                 onClick={handleLogout}
-                                className="block px-4 py-2 text-sm hover:bg-primary hover:text-white"
+                                className="block px-4 cursor-pointer py-2 text-sm hover:bg-primary hover:text-white"
                             >
                                 Logout
                             </div>

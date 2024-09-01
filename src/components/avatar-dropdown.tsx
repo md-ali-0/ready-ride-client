@@ -4,7 +4,7 @@ import {
     LogOutIcon,
     LucideAppWindow,
     LucideClipboardList,
-    LucideUserRound
+    LucideUserRound,
 } from "lucide-react";
 import { Dispatch, FC, SetStateAction, useEffect } from "react";
 
@@ -13,11 +13,14 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Skeleton } from "./ui/skeleton";
 
 interface AvatarDropdownProps {
-    setIsDropdownOpen: Dispatch<SetStateAction<boolean>>
+    setIsDropdownOpen: Dispatch<SetStateAction<boolean>>;
     handleLogout: () => void;
 }
 
-const AvatarDropdown: FC<AvatarDropdownProps> = ({ setIsDropdownOpen, handleLogout }) => {
+const AvatarDropdown: FC<AvatarDropdownProps> = ({
+    setIsDropdownOpen,
+    handleLogout,
+}) => {
     const token = useAppSelector((state) => state.auth.token);
     const user = useAppSelector((state) => state.auth.user);
 
@@ -66,7 +69,7 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ setIsDropdownOpen, handleLogo
                         <Link
                             className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
                             to={"/dashboard"}
-                            onClick={()=>setIsDropdownOpen(false)}
+                            onClick={() => setIsDropdownOpen(false)}
                         >
                             <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
                                 <LucideAppWindow size={20} />
@@ -78,30 +81,39 @@ const AvatarDropdown: FC<AvatarDropdownProps> = ({ setIsDropdownOpen, handleLogo
                             </div>
                         </Link>
                     )}
-                    <Link
-                        className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
-                        to={"/profile"}
-                        onClick={()=>setIsDropdownOpen(false)}
-                    >
-                        <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                            <LucideUserRound size={20} />
-                        </div>
-                        <div className="ml-4">
-                            <p className="text-sm font-medium ">My Profile</p>
-                        </div>
-                    </Link>
-                    <Link
-                        className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
-                        to={"/my-rentals"}
-                        onClick={()=>setIsDropdownOpen(false)}
-                    >
-                        <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
-                            <LucideClipboardList size={20} />
-                        </div>
-                        <div className="ml-4">
-                            <p className="text-sm font-medium ">My Rentals</p>
-                        </div>
-                    </Link>
+                    {user?.role == "user" && (
+                        <>
+                            <Link
+                                className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
+                                to={"/profile"}
+                                onClick={() => setIsDropdownOpen(false)}
+                            >
+                                <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                    <LucideUserRound size={20} />
+                                </div>
+                                <div className="ml-4">
+                                    <p className="text-sm font-medium ">
+                                        My Profile
+                                    </p>
+                                </div>
+                            </Link>
+                            <Link
+                                className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
+                                to={"/my-rentals"}
+                                onClick={() => setIsDropdownOpen(false)}
+                            >
+                                <div className="flex items-center justify-center flex-shrink-0 text-neutral-500 dark:text-neutral-300">
+                                    <LucideClipboardList size={20} />
+                                </div>
+                                <div className="ml-4">
+                                    <p className="text-sm font-medium ">
+                                        My Rentals
+                                    </p>
+                                </div>
+                            </Link>
+                        </>
+                    )}
+
                     <div
                         className="flex items-center p-2 -m-3 transition duration-150 ease-in-out rounded-lg cursor-pointer hover:bg-neutral-100 dark:hover:bg-neutral-700 focus:outline-none focus-visible:ring focus-visible:ring-slate-500 focus-visible:ring-opacity-50"
                         onClick={handleLogout}

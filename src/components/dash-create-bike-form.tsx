@@ -1,5 +1,3 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
 import {
     Form,
@@ -11,11 +9,6 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-// import { ErrorResponse } from "@/types";
-// import { SerializedError } from "@reduxjs/toolkit";
-// import { useEffect } from "react";
-// import { useForm } from "react-hook-form";
-// import { toast } from "sonner";
 import { useCreateBikeMutation } from "@/redux/features/bikes/bikeApi";
 import { ErrorResponse } from "@/types";
 import { SerializedError } from "@reduxjs/toolkit";

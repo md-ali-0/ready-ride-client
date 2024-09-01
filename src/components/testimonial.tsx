@@ -24,18 +24,18 @@ const Testimonial: FC = () => {
             image: "https://pagedone.io/asset/uploads/1696229994.png",
             review: "Thanks to pagedone, I feel more informed and confident about my investment decisions than ever before.",
             name: "Harsh P.",
-            ocupation: "CEO",
+            ocupation: "Manager",
         },
         {
             rating: 3.9,
-            image: "https://pagedone.io/asset/uploads/1696229969.png",
+            image: "https://randomuser.me/api/portraits/women/85.jpg",
             review: "Pagedone has made it possible for me to stay on top of my portfolio and make informed decisions quickly and easily.",
             name: "Harsh P.",
-            ocupation: "CEO",
+            ocupation: "Director",
         },
         {
             rating: 4.5,
-            image: "https://pagedone.io/asset/uploads/1696229969.png",
+            image: "https://randomuser.me/api/portraits/men/39.jpg",
             review: "Pagedone has made it possible for me to stay on top of my portfolio and make informed decisions quickly and easily.",
             name: "Harsh P.",
             ocupation: "CEO",
@@ -101,7 +101,7 @@ const Testimonial: FC = () => {
                                 <div className="flex items-center gap-5 border-t pt-5">
                                     <img
                                         className="rounded-full h-10 w-10"
-                                        src="https://pagedone.io/asset/uploads/1696229969.png"
+                                        src={item.image}
                                         alt="avatar"
                                     />
                                     <div className="block">

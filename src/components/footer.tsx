@@ -63,10 +63,10 @@ const Footer = () => {
                         </li>
                         <li>
                             <Link
-                                to={"/about-us"}
+                                to={"/#"}
                                 className="text-gray-400 hover:text-white"
                             >
-                                About Us
+                                Terms of Service
                             </Link>
                         </li>
                         <li>
@@ -75,6 +75,14 @@ const Footer = () => {
                                 className="text-gray-400 hover:text-white"
                             >
                                 Contact Us
+                            </Link>
+                        </li>
+                        <li>
+                            <Link
+                                to={"/#"}
+                                className="text-gray-400 hover:text-white"
+                            >
+                                Privacy Policy
                             </Link>
                         </li>
                     </ul>

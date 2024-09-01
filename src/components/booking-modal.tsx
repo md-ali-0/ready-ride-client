@@ -1,6 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import {
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { IBike } from "@/Interface/IBike";
@@ -28,10 +34,10 @@ const BookingModal = ({ bike, open, onClose }: BookingModalProps) => {
             startTime: "",
         },
     });
-    
-    const dispatch = useAppDispatch()
 
-    const navigate = useNavigate()
+    const dispatch = useAppDispatch();
+
+    const navigate = useNavigate();
 
     const onSubmit = async (data: any) => {
         const startDate = data.startDate;
@@ -46,21 +52,24 @@ const BookingModal = ({ bike, open, onClose }: BookingModalProps) => {
             amount: 100,
             isBooking: true,
         };
-        dispatch(setRentalData(RentalData))
+        dispatch(setRentalData(RentalData));
         onClose();
         reset();
-        toast.success("Redirecting to Payment Page...",{duration: 1000});
-        setTimeout(()=>navigate('/payment'),1000)
+        toast.success("Redirecting to Payment Page...", { duration: 1000 });
+        setTimeout(() => navigate("/payment"), 1000);
     };
 
     return (
         <Dialog open={open} onOpenChange={onClose}>
-            <DialogContent className="sm:max-w-[425px]" aria-describedby={undefined}>
+            <DialogContent
+                className="sm:max-w-[425px]"
+                aria-describedby={undefined}
+            >
                 <DialogHeader>
                     <DialogTitle>Book Now</DialogTitle>
                 </DialogHeader>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="grid gap-4 py-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
                         <div>
                             <Label htmlFor="startDate" className="text-right">
                                 Start Date
@@ -68,7 +77,6 @@ const BookingModal = ({ bike, open, onClose }: BookingModalProps) => {
                             <Input
                                 id="startDate"
                                 type="date"
-                                className="col-span-3"
                                 {...register("startDate", {
                                     required: "Date is required",
                                 })}
@@ -86,7 +94,6 @@ const BookingModal = ({ bike, open, onClose }: BookingModalProps) => {
                             <Input
                                 id="startTime"
                                 type="time"
-                                className="col-span-3"
                                 {...register("startTime", {
                                     required: "Time is required",
                                 })}
@@ -99,7 +106,9 @@ const BookingModal = ({ bike, open, onClose }: BookingModalProps) => {
                         </div>
                     </div>
                     <DialogFooter>
-                        <Button type="submit" className="mx-auto">Pay Now</Button>
+                        <Button type="submit" className="mx-auto">
+                            Pay Now
+                        </Button>
                     </DialogFooter>
                 </form>
             </DialogContent>

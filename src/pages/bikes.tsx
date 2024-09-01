@@ -130,83 +130,95 @@ const Bikes: FC = () => {
                 </div>
                 <hr className="py-2" />
                 <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {allBikes?.data?.map((bike, index) => (
-                        <div
-                            className="border hover:border-primary transition-all transform duration-500 ease-in-out rounded-xl px-2.5 py-3"
-                            key={index}
-                        >
-                            <div className="h-48 overflow-hidden rounded-md">
-                                <img
-                                    src={bike.image || ""}
-                                    alt={bike.name}
-                                    width={400}
-                                    height={400}
-                                    className="rounded-md h-48 hover:scale-105 transform transition-all duration-300 animate-in ease-in-out w-full object-cover"
-                                />
-                            </div>
-                            <div className="space-y-1 py-2.5">
-                                <h3 className="text-lg font-semibold">
-                                    {bike.name}
-                                </h3>
-                                <p className="text-sm line-clamp-2 text-muted-foreground">
-                                    {bike.description}
-                                </p>
-                                <div className="grid grid-cols-2">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-sm font-bold">
-                                            Brand :
-                                        </span>
-                                        <span className="text-sm">
-                                            {bike.brand}
-                                        </span>
+                    {allBikes?.data?.length !== 0 ? (
+                        allBikes?.data?.map((bike, index) => (
+                            <div
+                                className="border hover:border-primary transition-all transform duration-500 ease-in-out rounded-xl px-2.5 py-3"
+                                key={index}
+                            >
+                                <div className="h-48 overflow-hidden rounded-md">
+                                    <img
+                                        src={bike.image || ""}
+                                        alt={bike.name}
+                                        width={400}
+                                        height={400}
+                                        className="rounded-md h-48 hover:scale-105 transform transition-all duration-300 animate-in ease-in-out w-full object-cover"
+                                    />
+                                </div>
+                                <div className="space-y-1 py-2.5">
+                                    <h3 className="text-lg font-semibold">
+                                        {bike.name}
+                                    </h3>
+                                    <p className="text-sm line-clamp-2 text-muted-foreground">
+                                        {bike.description}
+                                    </p>
+                                    <div className="grid grid-cols-2">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-sm font-bold">
+                                                Brand :
+                                            </span>
+                                            <span className="text-sm">
+                                                {bike.brand}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center justify-end gap-2">
+                                            <span className="text-sm font-bold">
+                                                CC :
+                                            </span>
+                                            <span className="text-sm">
+                                                {bike.cc}
+                                            </span>
+                                        </div>
                                     </div>
-                                    <div className="flex items-center justify-end gap-2">
-                                        <span className="text-sm font-bold">
-                                            CC :
-                                        </span>
-                                        <span className="text-sm">
-                                            {bike.cc}
-                                        </span>
+                                    <div className="grid grid-cols-2">
+                                        <div className="flex items-center gap-2">
+                                            <span className="text-sm font-bold">
+                                                Model :
+                                            </span>
+                                            <span className="text-sm">
+                                                {bike.model}
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center justify-end gap-2">
+                                            <span className="text-sm font-bold">
+                                                Per Hour :
+                                            </span>
+                                            <span className="text-sm">
+                                                ${bike.pricePerHour}
+                                            </span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="grid grid-cols-2">
-                                    <div className="flex items-center gap-2">
-                                        <span className="text-sm font-bold">
-                                            Model :
-                                        </span>
-                                        <span className="text-sm">
-                                            {bike.model}
-                                        </span>
-                                    </div>
-                                    <div className="flex items-center justify-end gap-2">
-                                        <span className="text-sm font-bold">
-                                            Per Hour :
-                                        </span>
-                                        <span className="text-sm">
-                                            ${bike.pricePerHour}
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="flex justify-between items-center">
-                                {bike.isAvailable ? (
-                                    <Badge variant="outline">Available</Badge>
-                                ) : (
-                                    <Badge
-                                        variant="outline"
-                                        className="whitespace-nowrap"
+                                <div className="flex justify-between items-center">
+                                    {bike.isAvailable ? (
+                                        <Badge variant="outline">
+                                            Available
+                                        </Badge>
+                                    ) : (
+                                        <Badge
+                                            variant="outline"
+                                            className="whitespace-nowrap"
+                                        >
+                                            Not Available
+                                        </Badge>
+                                    )}
+                                    <Button
+                                        variant={"outline"}
+                                        size={"sm"}
+                                        asChild
                                     >
-                                        Not Available
-                                    </Badge>
-                                )}
-                                <Button variant={"outline"} size={"sm"} asChild>
-                                    <Link to={`/bike-details/${bike._id}`}>
-                                        View Details
-                                    </Link>
-                                </Button>
+                                        <Link to={`/bike-details/${bike._id}`}>
+                                            View Details
+                                        </Link>
+                                    </Button>
+                                </div>
                             </div>
+                        ))
+                    ) : (
+                        <div className="flex justify-center items-center py-10 col-span-4">
+                            <h3 className="text-xl font-medium">No Bikes Available</h3>
                         </div>
-                    ))}
+                    )}
                 </div>
                 <Pagination
                     totalPages={allBikes?.meta?.totalPage as number}

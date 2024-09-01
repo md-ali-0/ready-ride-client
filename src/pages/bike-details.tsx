@@ -20,7 +20,7 @@ const BikeDetails: FC = () => {
             toast.error("Something Went Wrong");
         }
     }, [isError, isSuccess, error, data]);
-    
+
     if (isLoading) {
         return <Loading />;
     }
@@ -46,7 +46,7 @@ const BikeDetails: FC = () => {
                         />
                     </div>
                 </div>
-                <div className="grid gap-4 md:gap-5 items-start">
+                <div className="grid gap-2.5 md:gap-2 items-start">
                     <div className="grid gap-4">
                         <h1 className="font-bold text-3xl lg:text-4xl">
                             {data?.data?.name}
@@ -81,16 +81,22 @@ const BikeDetails: FC = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="space-y-5">
-                        <div className="text-lg font-bold space-x-2">
+                    <div className="space-y-2.5">
+                        <div className="font-medium">
+                            <span>Description:</span>
+                            <p className="text-sm font-normal text-gray-500">
+                                {data?.data?.description}
+                            </p>
+                        </div>
+                        <div className="font-bold space-x-2">
                             <span>Price Per Hour:</span>
-                            <span className="text-2xl">
+                            <span className="text-xl">
                                 ${data?.data?.pricePerHour}
                             </span>
                         </div>
                         <div className="flex items-center gap-4 md:w-1/2">
                             <Button
-                                onClick={()=>setBookingDialogOpen(true)}
+                                onClick={() => setBookingDialogOpen(true)}
                                 size="lg"
                                 className="w-full"
                                 disabled={!data?.data?.isAvailable}
@@ -110,14 +116,18 @@ const BikeDetails: FC = () => {
 
                 <div className="mt-8">
                     <h3 className="text-xl font-bold text-gray-800">
-                        Product Description :
+                        Bike Description :
                     </h3>
                     <p className="text-sm text-gray-500 mt-4">
                         {data?.data?.description}
                     </p>
                 </div>
             </div>
-            <BookingModal open={bookingDialogOpen} onClose={() => setBookingDialogOpen(false)} bike={data?.data as IBike}/>
+            <BookingModal
+                open={bookingDialogOpen}
+                onClose={() => setBookingDialogOpen(false)}
+                bike={data?.data as IBike}
+            />
         </div>
     );
 };

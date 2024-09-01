@@ -1,7 +1,3 @@
-"use client";
-
-import { Table } from "@tanstack/react-table";
-
 import { Button } from "@/components/ui/button";
 import {
     DropdownMenu,
@@ -11,6 +7,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Table } from "@tanstack/react-table";
 import { LucideListFilter } from "lucide-react";
 
 interface DataTableViewOptionsProps<TData> {

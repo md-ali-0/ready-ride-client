@@ -19,6 +19,7 @@ import Loading from "./loading";
 import { Badge } from "./ui/badge";
 
 const ManageCouponTable: FC = () => {
+    const [search, setSearch] = useState<string | undefined>(undefined);
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
 
@@ -36,6 +37,10 @@ const ManageCouponTable: FC = () => {
             {
                 name: "page",
                 value: page,
+            },
+            {
+                name: "searchTerm",
+                value: search,
             },
         ]);
 
@@ -143,6 +148,7 @@ const ManageCouponTable: FC = () => {
             <DataTable
                 columns={columns}
                 data={data?.data || []}
+                onSearchValueChange={setSearch}
                 onPageChange={setPage}
                 onPageSizeChange={setLimit}
                 meta={data?.meta as TMeta}

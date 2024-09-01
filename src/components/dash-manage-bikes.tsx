@@ -19,6 +19,7 @@ import Loading from "./loading";
 import { Badge } from "./ui/badge";
 
 const ManageBikeTable: FC = () => {
+    const [search, setSearch] = useState<string | undefined>(undefined);
     const [page, setPage] = useState(1);
     const [limit, setLimit] = useState(10);
 
@@ -27,8 +28,7 @@ const ManageBikeTable: FC = () => {
     const [bikeToEdit, setbikeToEdit] = useState<IBike | null>(null);
     const [biketoDelete, setbiketoDelete] = useState<IBike | null>(null);
 
-    const { data, isError, isLoading, isSuccess, error } =
-        useGetAllBikesQuery([
+    const { data, isError, isLoading, isSuccess, error } = useGetAllBikesQuery([
         {
             name: "limit",
             value: limit,
@@ -36,6 +36,10 @@ const ManageBikeTable: FC = () => {
         {
             name: "page",
             value: page,
+        },
+        {
+            name: "searchTerm",
+            value: search,
         },
     ]);
 
@@ -163,6 +167,7 @@ const ManageBikeTable: FC = () => {
             <DataTable
                 columns={columns}
                 data={data?.data || []}
+                onSearchValueChange={setSearch}
                 onPageChange={setPage}
                 onPageSizeChange={setLimit}
                 meta={data?.meta as TMeta}

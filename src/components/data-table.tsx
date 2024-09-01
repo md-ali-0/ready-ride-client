@@ -31,6 +31,7 @@ interface DataTableProps<TData, TValue> {
     meta: TMeta;
     onPageChange: (page: number) => void;
     onPageSizeChange: (pageSize: number) => void;
+    onSearchValueChange: (searchValue: string) => void;
 }
 
 export function DataTable<TData, TValue>({
@@ -39,6 +40,7 @@ export function DataTable<TData, TValue>({
     meta,
     onPageChange,
     onPageSizeChange,
+    onSearchValueChange,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = useState<SortingState>([]);
     const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -68,14 +70,8 @@ export function DataTable<TData, TValue>({
             <div className="flex items-center py-2.5">
                 <Input
                     placeholder="Search Here..."
-                    value={
-                        (table.getColumn("name")?.getFilterValue() as string) ??
-                        ""
-                    }
                     onChange={(event) =>
-                        table
-                            .getColumn("name")
-                            ?.setFilterValue(event.target.value)
+                        onSearchValueChange(event.target.value)
                     }
                     className="max-w-64"
                     type="search"

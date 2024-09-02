@@ -31,16 +31,14 @@ const BikeDetails: FC = () => {
                 <div className="grid gap-4 md:gap-10 items-start">
                     <div className="hidden md:flex items-start rounded-lg">
                         <img
-                            src="https://autobike-light.templaza.net/wp-content/uploads/2023/05/kody-goodson-SPBN8LHjaIE-unsplash.jpg"
-                            // src={data?.data?.image}
+                            src={data?.data?.image || ''}
                             alt={data?.data?.name}
                             className="object-fill rounded-lg overflow-hidden h-96 w-auto mx-auto"
                         />
                     </div>
                     <div className="md:hidden">
                         <img
-                            src="https://autobike-light.templaza.net/wp-content/uploads/2023/05/kody-goodson-SPBN8LHjaIE-unsplash.jpg"
-                            // src={data?.data?.image}
+                            src={data?.data?.image || ''}
                             alt={data?.data?.name}
                             className="aspect-square object-cover w-full rounded-lg overflow-hidden"
                         />

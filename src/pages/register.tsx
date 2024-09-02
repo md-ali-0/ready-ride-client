@@ -50,7 +50,7 @@ const Register: FC = () => {
     const password = watch("password");
 
     return (
-        <div className="flex min-h-[100dvh] flex-col bg-background">
+        <div className="flex min-h-[100dvh] flex-col items-center justify-center bg-background">
             <div className="container mx-auto flex flex-col items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
                 <div className="mx-auto w-full max-w-md space-y-8">
                     <div>

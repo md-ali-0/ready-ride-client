@@ -136,6 +136,36 @@ const Navbar: FC = () => {
                                 Contact Us
                             </NavLink>
                         </li>
+                        {!token && (
+                            <>
+                                <li className="max-lg:border-b max-lg:py-3 px-3 sm:hidden">
+                                    <NavLink
+                                        to="/login"
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? "nav-link active"
+                                                : "nav-link"
+                                        }
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        Login
+                                    </NavLink>
+                                </li>
+                                <li className="max-lg:border-b max-lg:py-3 px-3 sm:hidden">
+                                    <NavLink
+                                        to="/register"
+                                        className={({ isActive }) =>
+                                            isActive
+                                                ? "nav-link active"
+                                                : "nav-link"
+                                        }
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        Register
+                                    </NavLink>
+                                </li>
+                            </>
+                        )}
                     </ul>
                 </div>
                 <div className="flex items-center max-lg:ml-auto space-x-3">

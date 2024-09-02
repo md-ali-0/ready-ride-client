@@ -324,7 +324,7 @@ export default function CreateBikeForm() {
 
                 {/* Submit Button */}
                 <div className="col-span-2 py-5">
-                    <Button type="submit">Create Brand</Button>
+                    <Button type="submit">Create Bike</Button>
                 </div>
             </form>
         </Form>

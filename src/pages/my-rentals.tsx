@@ -15,7 +15,7 @@ const MyRentals: FC = () => {
     const [activeTab, setActiveTab] = useState<string>("unpaid");
     const [selectedRental, setSelectedRental] = useState<any>(null);
     const [currentPage, setCurrentPage] = useState<number | undefined>(1);
-    
+
     const {
         data: allRentals,
         isError,
@@ -64,8 +64,26 @@ const MyRentals: FC = () => {
                         </div>
                         <hr className="py-2" />
                         <div className="flex gap-2">
-                            <Button size={'lg'} variant={activeTab === 'unpaid' ? "default" : "outline"} onClick={() => setActiveTab("unpaid")}>UnPaid</Button>
-                            <Button size={'lg'} variant={activeTab === 'paid' ? "default" : "outline"} onClick={() => setActiveTab("paid")}>Paid</Button>
+                            <Button
+                                size={"lg"}
+                                variant={
+                                    activeTab === "unpaid"
+                                        ? "default"
+                                        : "outline"
+                                }
+                                onClick={() => setActiveTab("unpaid")}
+                            >
+                                UnPaid
+                            </Button>
+                            <Button
+                                size={"lg"}
+                                variant={
+                                    activeTab === "paid" ? "default" : "outline"
+                                }
+                                onClick={() => setActiveTab("paid")}
+                            >
+                                Paid
+                            </Button>
                         </div>
                         <div className="overflow-x-auto mt-5">
                             <table className="min-w-full divide-y">
@@ -105,16 +123,21 @@ const MyRentals: FC = () => {
                                             ) => (
                                                 <tr key={index}>
                                                     <td className="px-6 py-4 whitespace-nowrap">
-                                                        <img
-                                                            src={
-                                                                bike.bikeId
-                                                                    .image || ""
-                                                            }
-                                                            alt={
-                                                                bike.bikeId.name
-                                                            }
-                                                            className="w-16 h-16 object-cover rounded"
-                                                        />
+                                                        {bike?.bikeId
+                                                            ?.image && (
+                                                            <img
+                                                                src={
+                                                                    bike?.bikeId
+                                                                        ?.image ||
+                                                                    ""
+                                                                }
+                                                                alt={
+                                                                    bike?.bikeId
+                                                                        ?.name
+                                                                }
+                                                                className="w-16 h-16 object-cover rounded"
+                                                            />
+                                                        )}
                                                     </td>
                                                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium ">
                                                         {bike?.bikeId?.name}

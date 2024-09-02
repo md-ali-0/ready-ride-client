@@ -29,20 +29,24 @@ const BikeDetails: FC = () => {
         <div className="container">
             <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start mx-auto py-6">
                 <div className="grid gap-4 md:gap-10 items-start">
-                    <div className="hidden md:flex items-start rounded-lg">
-                        <img
-                            src={data?.data?.image || ''}
-                            alt={data?.data?.name}
-                            className="object-fill rounded-lg overflow-hidden h-96 w-auto mx-auto"
-                        />
-                    </div>
-                    <div className="md:hidden">
-                        <img
-                            src={data?.data?.image || ''}
-                            alt={data?.data?.name}
-                            className="aspect-square object-cover w-full rounded-lg overflow-hidden"
-                        />
-                    </div>
+                    {data?.data?.image && (
+                        <>
+                            <div className="hidden md:flex items-start rounded-lg">
+                                <img
+                                    src={data?.data?.image || ""}
+                                    alt={data?.data?.name}
+                                    className="object-fill rounded-lg overflow-hidden h-96 w-auto mx-auto"
+                                />
+                            </div>
+                            <div className="md:hidden">
+                                <img
+                                    src={data?.data?.image || ""}
+                                    alt={data?.data?.name}
+                                    className="aspect-square object-cover w-full rounded-lg overflow-hidden"
+                                />
+                            </div>
+                        </>
+                    )}
                 </div>
                 <div className="grid gap-2.5 md:gap-2 items-start">
                     <div className="grid gap-4">
